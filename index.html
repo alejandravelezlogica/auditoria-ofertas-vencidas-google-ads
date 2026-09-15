@@ -109,6 +109,15 @@
   .mainpanel{display:none; padding-top:24px}
   .mainpanel.active{display:block}
   .match-score{font-size:10.5px; color:var(--text-dim); font-weight:600; white-space:nowrap}
+
+  .search-wrap{margin:4px 0 16px}
+  .search-input{
+    width:100%; max-width:380px; padding:9px 14px; border-radius:8px;
+    border:1px solid var(--border); background:var(--surface); color:var(--text);
+    font-family:inherit; font-size:13px;
+  }
+  .search-input:focus{outline:2px solid var(--seablue); outline-offset:1px}
+  .sin-resultados{display:none; padding:10px 0 4px; color:var(--text-dim); font-style:italic; font-size:12.5px}
 </style>
 </head>
 <body>
@@ -161,6 +170,7 @@
 
   <section>
     <div class="section-head"><h2>Anuncios con fecha ya vencida</h2><span class="count">8 hallazgo(s)</span></div>
+    <div class="search-wrap"><input type="text" class="search-input" placeholder="Buscar hotel o cuenta..." oninput="filtrarPorHotel(this)"></div>
     
     <div class="card estado-vencido">
       <div class="card-top">
@@ -266,6 +276,7 @@
         <div class="ad-text">San Lázaro Art Hotel | San Lázaro Art Hotel | Frente al Castillo San Felipe | Experiencias en Cartagena hoy | San Lázaro con beach club | Cartagena + gastronomía | Tu plan en Cartagena hoy | Disfruta beach club Cartagena | Gastronomía en San Lázaro | Cartagena con tarifa especial | Reserva tu experiencia hoy | Disfruta Cartagena con beach club y gastronomía a tu medida | Arma tu experiencia en Cartagena con tarifa especial en San Lázaro | Hotel San Lázaro Cartagena con tarifa especial y experiencias únicas | Disfruta Cartagena a tu medida con tarifa especial en <b>junio</b> y <b>julio</b> | Vive Cartagena en <b>junio</b> y <b>julio</b> con experiencias y tarifa especial | Reserva en San Lázaro y personaliza tu experiencia en Cartagena | San Lázaro con desayuno | Vive Cartagena con más beneficios y desayuno incluido todos los días | Descanso y desayuno incluido | Reserva y recibe desayuno | Empieza tus mañanas con desayuno incluido y vive Cartagena al máximo. | Desayuno gratis incluido | Reserva en Hotel San Lázaro y disfruta desayuno buffet incluido cada día. | Desayuno incluido | Hospédate en Hotel San Lázaro y recibe desayuno gratis con tu reserva</div>
       </details>
     </div>
+    <div class="sin-resultados">Sin resultados para esa búsqueda.</div>
   </section>
 
   <section>
@@ -321,6 +332,10 @@
           <div class="cov-check">✓</div>
           <div><b>Grupos evergreen excluidos</b><span>"Competencia" y "GHL Plus" quedan fuera del análisis en todas las cuentas — no dependen de una oferta puntual.</span></div>
         </div>
+        <div class="cov-item">
+          <div class="cov-check" style="background:var(--neu)">!</div>
+          <div><b>36 título(s) sin señal distintiva</b><span>Sin palabras propias (todo genérico) ni % en el título — no pueden generar alerta hoy: Arsenal: “Minima Estadía 4 Noches”; Bioxury: “Minima Estadía 3 Noches”; GHL Collection Hamilton: ““Plan 2 Noches, Más Beneficios””; GHL Grand Villavicencio: “Reserva con Anticipación y Ahorra en Ghl Hotel Villavicencio”; GHL Lago Titicaca: “Desconexión Titicaca - Tarifa con Descuento”; GHL Relax Corales de Indias: “Oferta de Escapada Vacacional”; GHL Relax Sunrise: “Reserva con 90 Días de Anticipación y Ahorra”; GHL Style Bogota Occidente: “Reserva con Anticipación y Ahorra Más” (+28 más, ver log). Revisar manualmente o ampliar el algoritmo si corresponde.</span></div>
+        </div>
       </div>
       <div class="cov-note">
         244 anuncios/grupos de recursos activos cruzados contra 36 ofertas eliminadas y 0 modificadas del dashboard externo.
@@ -330,7 +345,11 @@
   </section>
 
   <section>
-    <div class="section-head"><h2>Anuncios que comunican una oferta ya eliminada</h2><span class="count">14 hallazgo(s)</span></div>
+    <div class="section-head">
+      <h2>Anuncios que comunican una oferta ya eliminada</h2>
+      <span class="count">14 hallazgo(s)</span>
+    </div>
+    <div class="search-wrap"><input type="text" class="search-input" placeholder="Buscar hotel o cuenta..." oninput="filtrarPorHotel(this)"></div>
     
     <div class="card estado-eliminada">
       <div class="card-top">
@@ -570,6 +589,7 @@
         <div class="ad-text">Hotel en la Ciudad Amurallada | Escápate hoy a Cartagena | Último <b>minuto</b> en Cartagena | 10% Off hoy en Cartagena | Oferta last minute Arsenal | Caribe hoy con descuento | Viaja ya a Cartagena | Hotel Arsenal con 10% Off | Escápate al Caribe hoy | Últimas noches con descuento | Vive Cartagena ahora | Aprovecha esta oferta de último <b>minuto</b> y obtén 10% de descuento reservando hoy. | El Caribe no espera. Disfruta Cartagena con un beneficio exclusivo por tiempo limitado. | Escápate ahora a Cartagena y reserva directamente con descuento especial. | Últimos días para viajar y ahorrar. Vive Cartagena con una oferta exclusiva. | Reserva hoy en Hotel Arsenal y disfruta una escapada con beneficio especial. | Escápate hoy a Cartagena con 10% de descuento exclusivo | Disfruta Cartagena ahora con una oferta especial por tiempo limitado | Última oportunidad para escapar a Cartagena con descuento | Viaja hoy a Cartagena | Disfruta Cartagena con 10% Off | Reserva hoy y Ahorra | Descuento para Cartagena | Oferta de último <b>minuto</b>: Viaja a Cartagena hoy y ahorra | El Caribe no espera: Reserva hoy y viaja a Cartagena</div>
       </details>
     </div>
+    <div class="sin-resultados">Sin resultados para esa búsqueda.</div>
   </section>
 
   <footer>
@@ -594,6 +614,21 @@ function switchMain(id, btn){
   document.querySelectorAll('.maintab').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
+}
+function filtrarPorHotel(input){
+  var panel = input.closest('.mainpanel') || document;
+  var q = input.value.trim().toLowerCase();
+  var seccion = input.closest('section');
+  var visibles = 0;
+  seccion.querySelectorAll('.card').forEach(function(card){
+    var nombre = card.querySelector('.cuenta');
+    var texto = (nombre ? nombre.textContent : card.textContent).toLowerCase();
+    var coincide = !q || texto.indexOf(q) !== -1;
+    card.hidden = !coincide;
+    if (coincide) visibles++;
+  });
+  var sinRes = seccion.querySelector('.sin-resultados');
+  if (sinRes) sinRes.style.display = (visibles === 0 && q) ? 'block' : 'none';
 }
 </script>
 </body>
