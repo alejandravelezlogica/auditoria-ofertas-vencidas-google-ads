@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auditoría Ofertas Vencidas</title>
+<title>Auditoría Ofertas Google Ads</title>
 <style>
   *{box-sizing:border-box; margin:0; padding:0}
   img{max-width:100%}
@@ -70,8 +70,8 @@
   .cov-note code, .cov-item code{background:var(--chip-bg); padding:1px 6px; border-radius:4px; font-size:11px}
   .empty-note{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px; color:var(--text-dim); font-style:italic}
   .card{border:1px solid var(--border); border-radius:10px; background:var(--surface); padding:16px 18px; margin-bottom:12px}
-  .card.estado-vencido{border-color:var(--neg-border); background:var(--neg-bg)}
-  .card.estado-revisar{border-color:var(--neu-border); background:var(--neu-bg)}
+  .card.estado-vencido, .card.estado-eliminada{border-color:var(--neg-border); background:var(--neg-bg)}
+  .card.estado-revisar, .card.estado-modificada{border-color:var(--neu-border); background:var(--neu-bg)}
   .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap}
   .card-id .cuenta{font-size:13px; font-weight:600; color:var(--ocean)}
   :root[data-theme="dark"] .card-id .cuenta{color:#8FC1E8}
@@ -79,13 +79,13 @@
   .card-id .meta{font-size:12px; color:var(--text-dim); margin-top:2px}
   .card-id .meta b{color:var(--text); font-weight:600}
   .badge{font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; white-space:nowrap; letter-spacing:.01em}
-  .badge.vencido{background:var(--neg); color:#fff}
-  .badge.revisar{background:var(--neu); color:#fff}
+  .badge.vencido, .badge.eliminada{background:var(--neg); color:#fff}
+  .badge.revisar, .badge.modificada{background:var(--neu); color:#fff}
   .fechas{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0}
   .fecha-chip{display:flex; flex-direction:column; gap:1px; font-size:12.5px; padding:4px 10px; border-radius:7px; font-weight:700; border:1px solid transparent; line-height:1.3}
   .fecha-chip .win{font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.8}
-  .fecha-chip.vencido{background:#fff; border-color:var(--neg); color:var(--neg)}
-  .fecha-chip.revisar{background:#fff; border-color:var(--neu); color:var(--neu)}
+  .fecha-chip.vencido, .fecha-chip.eliminada{background:#fff; border-color:var(--neg); color:var(--neg)}
+  .fecha-chip.revisar, .fecha-chip.modificada{background:#fff; border-color:var(--neu); color:var(--neu)}
   .fecha-chip.vigente{background:#fff; border-color:var(--pos); color:var(--pos)}
   :root[data-theme="dark"] .fecha-chip{background:transparent}
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fecha-chip{background:transparent}}
@@ -97,25 +97,37 @@
   footer{padding:22px 0 40px; text-align:center; font-size:11px; color:var(--text-dim)}
   footer .note{max-width:640px; margin:0 auto 10px; line-height:1.6}
   @media (max-width:600px){.wrap{padding:0 16px} .header{padding:24px 16px 20px}}
+
+  .maintabs{display:flex; gap:6px; margin:0 0 0; border-bottom:2px solid var(--border); flex-wrap:wrap; padding:0 32px}
+  .maintab{padding:13px 22px; font-size:13.5px; font-weight:700; color:var(--text-dim); background:none; border:none; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; font-family:inherit}
+  .maintab:hover{color:var(--ocean)}
+  .maintab.active{color:var(--ocean); border-bottom-color:var(--ocean)}
+  :root[data-theme="dark"] .maintab.active, :root[data-theme="dark"] .maintab:hover{color:#8FC1E8; border-bottom-color:#8FC1E8}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .maintab.active,:root:not([data-theme="light"]) .maintab:hover{color:#8FC1E8; border-bottom-color:#8FC1E8}}
+  .maintab .tag{font-size:10px; font-weight:700; color:#fff; background:var(--neg); padding:1px 7px; border-radius:20px; margin-left:6px}
+  .maintab .tag.zero{background:var(--glossy); color:var(--text-dim)}
+  .mainpanel{display:none; padding-top:24px}
+  .mainpanel.active{display:block}
+  .match-score{font-size:10.5px; color:var(--text-dim); font-weight:600; white-space:nowrap}
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="eyebrow">GHL Hotels · Google Ads · Agencia Digital</div>
-  <h1>Auditoría de Ofertas Vencidas en Anuncios Activos</h1>
+  <h1>Auditoría de Anuncios Activos — Google Ads</h1>
   <div class="sub">
     <span>Fecha de referencia: <b>15/09/2026</b></span>
     <span>MCC: <b>3452357798</b> (GHL Hoteles MCC Nuevo)</span>
-    <span>Canales auditados: <b>Search · Display · Demand Gen · Performance Max</b></span>
+    <span>Canales: <b>Search · Display · Demand Gen · Performance Max</b></span>
   </div>
 </div>
-
+<div class="maintabs"><button class="maintab active" onclick="switchMain('tab-vencidas',this)">Fechas vencidas<span class="tag">8</span></button><button class="maintab" onclick="switchMain('tab-eliminadas',this)">Ofertas eliminadas / modificadas<span class="tag">14</span></button></div>
 <div class="wrap">
+<div class="mainpanel active" id="tab-vencidas">
   <div class="kpis">
     <div class="kpi"><div class="val">53</div><div class="lbl">Cuentas en el MCC</div></div>
     <div class="kpi"><div class="val">47</div><div class="lbl">Cuentas con anuncios activos</div></div>
-    <div class="kpi"><div class="val">241</div><div class="lbl">Anuncios / grupos de recursos activos revisados</div></div>
+    <div class="kpi"><div class="val">244</div><div class="lbl">Anuncios / grupos de recursos activos revisados</div></div>
     <div class="kpi neg"><div class="val">8</div><div class="lbl">Con fecha ya vencida</div></div>
     <div class="kpi neu"><div class="val">1</div><div class="lbl">Vence este mes — revisar</div></div>
   </div>
@@ -142,7 +154,7 @@
         </div>
       </div>
       <div class="cov-note">
-        Tipos de anuncio realmente encontrados activos en esta corrida: <code>DEMAND_GEN_MULTI_ASSET_AD</code>, <code>PERFORMANCE_MAX_ASSET_GROUP</code>, <code>RESPONSIVE_SEARCH_AD</code>.
+        Tipos de anuncio realmente encontrados activos en esta corrida: <code>DEMAND_GEN_MULTI_ASSET_AD</code>, <code>DEMAND_GEN_VIDEO_RESPONSIVE_AD</code>, <code>PERFORMANCE_MAX_ASSET_GROUP</code>, <code>RESPONSIVE_SEARCH_AD</code>.
       </div>
     </div>
   </section>
@@ -280,7 +292,309 @@
       automáticamente. Generado por <code>detectar_ofertas_vencidas.py</code>.
     </div>
     Elaborado por: Agencia Digital · Dirección de Mercadeo · Oficina Central GHL · Septiembre 2026
+  </footer></div><div class="mainpanel" id="tab-eliminadas">
+  <div class="kpis">
+    <div class="kpi"><div class="val">100</div><div class="lbl">Ofertas activas en el dashboard externo</div></div>
+    <div class="kpi"><div class="val">44</div><div class="lbl">Ofertas marcadas como eliminadas</div></div>
+    <div class="kpi"><div class="val">0</div><div class="lbl">Ofertas marcadas como modificadas</div></div>
+    <div class="kpi neg"><div class="val">14</div><div class="lbl">Anuncios que aún comunican una oferta eliminada</div></div>
+    <div class="kpi neu"><div class="val">0</div><div class="lbl">Anuncios con datos de una oferta modificada</div></div>
+  </div>
+
+  <section>
+    <div class="section-head"><h2>Cobertura y validación del proceso</h2></div>
+    <div class="panel">
+      <div class="cov-grid">
+        <div class="cov-item">
+          <div class="cov-check">✓</div>
+          <div><b>Fuente externa</b><span>Dashboard de ofertas por propiedad: <code>https://santiagocristancho0722.github.io/ghl-planes-y-ofertas/ofertas.html</code>, descargado en cada corrida.</span></div>
+        </div>
+        <div class="cov-item">
+          <div class="cov-check">✓</div>
+          <div><b>Vinculación por hotel</b><span>Alias exacto de cuenta (ej. "ghlcostazul") contra el dashboard; si no calza, coincidencia parcial de alias; si tampoco, similitud de nombre como último recurso.</span></div>
+        </div>
+        <div class="cov-item">
+          <div class="cov-check">✓</div>
+          <div><b>Coincidencia por tokens, no por caracteres</b><span>Se exige que TODAS las palabras distintivas del título de la oferta (sin genéricas de marketing ni el nombre del hotel) aparezcan en el grupo o el texto del anuncio.</span></div>
+        </div>
+        <div class="cov-item">
+          <div class="cov-check">✓</div>
+          <div><b>Grupos evergreen excluidos</b><span>"Competencia" y "GHL Plus" quedan fuera del análisis en todas las cuentas — no dependen de una oferta puntual.</span></div>
+        </div>
+      </div>
+      <div class="cov-note">
+        244 anuncios/grupos de recursos activos cruzados contra 44 ofertas eliminadas y 0 modificadas del dashboard externo.
+        2 cuenta(s) de Google Ads no se pudieron vincular a ningún hotel del dashboard (quedaron fuera del cruce, no se asumió nada).
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Anuncios que comunican una oferta ya eliminada</h2><span class="count">14 hallazgo(s)</span></div>
+    
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Hotel Lago Titicaca - ghllagotiticaca</div>
+          <div class="meta"><b>GHL Lago Titicaca - ghllagotiticaca PE- es - BRND</b> · Search · Grupo "Desktop"</div>
+          <div class="meta">Hotel externo: <b>GHL Lago Titicaca</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Ultimo Minuto 3 Días 10%<span class="win">Ultimo Minuto</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-08-31 12:42</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">GHL Hotel Lago Titicaca | Reserva en la Web Oficial | Espléndido Hotel en Puno | Con Vista al Lago Titicaca | Un Increíble Escenario Natural | Último <b>Minuto</b> 10% Off | A Orillas del Lago Titicaca | Embárcate en Aventuras Únicas | Oferta Exclusiva 20% Off | Impresionante Paisaje | Rodéate de Naturaleza | Descuentos Únicos. Web Oficial | GHL Lago Titicaca en Puno | 10% Off con GHL Plus | Hotel Lago 20% de Descuento | Reserva en Hotel Lago Titicaca con hasta 20% Off y beneficios exclusivos online. | Despiértate cada mañana en un escenario lleno de belleza natural. | Reserva tu estadía de último <b>minuto</b> y ahorra 10% reservando con 3 días de anticipación. | Recibe Hasta un 10% Off registrándote gratis a GHL Plus. Solo en la Web Oficial.</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Hotel Lago Titicaca - ghllagotiticaca</div>
+          <div class="meta"><b>GHL Lago Titicaca - ghllagotiticaca PE- es - BRND</b> · Search · Grupo "Mobile"</div>
+          <div class="meta">Hotel externo: <b>GHL Lago Titicaca</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Ultimo Minuto 3 Días 10%<span class="win">Ultimo Minuto</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-08-31 12:42</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">GHL Hotel Lago Titicaca | Reserva en la Web Oficial | Espléndido Hotel en Puno | Frente al Lago Titicaca | Un Increíble Escenario Natural | <b>Ultimo</b> <b>minuto</b> 3 días 10% | A Orillas del Lago Titicaca | 20% de descuento exclusivo | Tarifa con Descuento | Impresionante Paisaje | Rodéate de Naturaleza | Oferta Exclusiva 20% Off | Disfruta de un descanso único | 10% Off Desde tu Celular | Ofertas Únicas. Web Oficial | Reserva tu estadía de último <b>minuto</b> y ahorra 10% reservando con 3 días de anticipación. | Despiértate cada mañana en un escenario lleno de belleza natural. | Recibe Hasta un 10% Off registrándote gratis a GHL Plus. Solo en la Web Oficial. | Reserva en Hotel Lago Titicaca con hasta 20% Off y beneficios exclusivos online.</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Hotel Plaza Pradera Quetzaltenango USD - latamhotel</div>
+          <div class="meta"><b>Hotel GHL LATAM Plaza Pradera Quetzaltenango - GT:es - PMax Travel</b> · Performance Max · Grupo "Latam Hotel Plaza Pradera Quetzaltenango"</div>
+          <div class="meta">Hotel externo: <b>LATAM XELA</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Compra Anticipada 15 Días<span class="win">Compra Anticipada</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-08-12 08:38</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">Un Lugar Paradisíaco | Latam Hotel Plaza Pradera | Ubicado dentro del centro comercial La Pradera Xela, cerca a los volcanes de Guatemala | Disfruta de diferentes beneficios que te ofrecemos ingresando en nuestra web oficial | Obtén la mayor garantía de confiabilidad, calidad y servicio. ¡Ingresa y Reserva Ya! | Hotel de lujo de 4 estrellas | Ideal para viajar en familia | Habitaciones climatizadas | Tu comodidad y bienestar son nuestra máxima prioridad. | Vive una experiencia de lujo las 24 horas en Latam Hotel Plaza Pradera Quetzaltenango. | Piscina relajante, un servicio de alta calidad y habitaciones limpias en Quezaltenango. | Pasa tus vacaciones en Latam Hotel Plaza Pradera Quetzaltenango. | Relájate y disfruta de bebidas increíbles en nuestro bar acogedor. Reserva ahora. | Descubre Quezaltenango durante tu estancia en nuestro alojamiento. | Solamente reservando por nuestra página web. Recibe estos beneficios y más. Reserva Ya | Ahorra 10% en Xela hoy | Reserva antes y ahorra 10% | <b>Compra</b> <b>anticipada</b> 10% Off | Reserva hoy en Latam Xela | Quédate 2 noches y ahorra 12% | Disfruta Xela con descuento</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Relax Costa Azul COPS - ghlcostazul</div>
+          <div class="meta"><b>Hotel GHL Relax Costa Azul - CO:es - BRND</b> · Search · Grupo "Adgroup Todas las Keywords - Desktop"</div>
+          <div class="meta">Hotel externo: <b>GHL Relax Costa Azul</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Ultimo Minuto 3 Días<span class="win">Ultimo Minuto</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-07-21 15:01</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">{KeyWord: Hotel GHL Relax Costa Azul} | GHL Hotel Relax Costa Azul® | Traslado Hotel - Aeropuerto | Hasta 12% reservando antes | Reserva una habitación | Oferta Escapada - 15% Off | Oferta última hora Santa Marta | Anticípate 30 días -10% Off | A 7 <b>Minuto</b>s del Aeropuerto | Escápate hoy con 5% Off | Localización Ideal Turística | Reserva Ahora Mismo | Último <b>minuto</b> 5% Off | GHL Plus 10% Off | Ubicados en el corredor turístico del sur de la ciudad de Santa Marta, para conocerlo todo | Podrás ir a El Rodadero y cerca al Centro Histórico. ¡Ingresa y Realiza tu Reserva Ya! | Recibe Hasta un 10% Off registrándote gratis a GHL Plus. Solo en la Web Oficial. | Escápate a Santa Marta con 5% Off. Reserva de último <b>minuto</b> y disfruta frente al mar.</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Relax Costa Azul COPS - ghlcostazul</div>
+          <div class="meta"><b>Hotel GHL Relax Costa Azul - CO:es - BRND</b> · Search · Grupo "Adgroup Todas las Keywords Movil"</div>
+          <div class="meta">Hotel externo: <b>GHL Relax Costa Azul</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Ultimo Minuto 3 Días<span class="win">Ultimo Minuto</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-07-21 15:01</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">{KeyWord: Hotel GHL Relax Costa Azul} | GHL Hotel Relax Costa Azul® | Traslado Hotel - Aeropuerto | Último <b>minuto</b> 5% Off | Oferta última hora Santa Marta | Compra de Manera Segura | Ingresa a nuestra Web Oficial | Planifica y obtén 10% Off | A 7 <b>Minuto</b>s del Aeropuerto | Reserva hoy, ahorra 5% | Hotel Relax Costa Azul | GHL Plus 10% Off | Hasta 12% reservando antes | Reserva con 30 días y ahorra | Ubicados en el corredor turístico del sur de la ciudad de Santa Marta, para conocerlo todo | Podrás ir a El Rodadero y cerca al Centro Histórico. ¡Ingresa y Realiza tu Reserva Ya! | Recibe Hasta un 15% Off registrándote gratis a GHL Plus. Solo en la Web Oficial. | Escápate a Santa Marta con 5% Off. Reserva de último <b>minuto</b> y disfruta frente al mar.</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Relax Costa Azul COPS - ghlcostazul</div>
+          <div class="meta"><b>Hotel GHL Relax Costa Azul - CO:es - BRND - Otras Regiones</b> · Search · Grupo "Adgroup Todas las Keywords"</div>
+          <div class="meta">Hotel externo: <b>GHL Relax Costa Azul</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Ultimo Minuto 3 Días<span class="win">Ultimo Minuto</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-07-21 15:01</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">{KeyWord: Hotel GHL Relax Costa Azul} | GHL Hotel Relax Costa Azul® | Traslado Hotel - Aeropuerto | Confortables habitaciones | Reserva una habitación | Oferta Escapada - 5% Off | Ingresa a nuestra Web Oficial | Ambiente acogedor y relajante | A 7 <b>Minuto</b>s del Aeropuerto | Anticípate 30 días -10% | Hasta 12% reservando antes | Escápate hoy con 5% Off | Planifica y obtén 10% Off | Hotel Con Piscina | GHL Plus 10% Off | Ubicados en el corredor turístico del sur de la ciudad de Santa Marta, para conocerlo todo | Podrás ir a El Rodadero y cerca al Centro Histórico. ¡Ingresa y Realiza tu Reserva Ya! | Escápate a Santa Marta con 5% Off. Reserva de último <b>minuto</b> y disfruta frente al mar. | Recibe Hasta un 10% Off registrándote gratis a GHL Plus. Solo en la Web Oficial.</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Relax Costa Azul COPS - ghlcostazul</div>
+          <div class="meta"><b>Hotel GHL Relax Costa Azul - CO:es - PMAX</b> · Performance Max · Grupo "Oferta reserva anticipada"</div>
+          <div class="meta">Hotel externo: <b>GHL Relax Costa Azul</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Ultimo Minuto 3 Días<span class="win">Ultimo Minuto</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-07-21 15:01</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">GHL Hotel Relax Costa Azul® | A 7 <b>Minuto</b>s del Aeropuerto | Hotel en Santa Marta | Descubre la magia de este increíble destino en nuestro GHL Relax Hotel Costa Azul | Compra Anticipada -10% | Reserva ya y ahorra 10% | 10% Off por reserva previa | Santa Marta: -10% anticipado | Early Booking: -10% Off | Descuento 10% por anticipar | Reserva con tiempo y ahorra | Últimos días para reservar | Mejor tarifa anticipada | Reserva Directa | ¡Reserva! Ahorra 10% reservando con +30 días. Válida hasta 31/05. | Ideal para planear con tiempo y acceder a una tarifa anticipada. Reserva en la web oficial | Planifica tu próximo viaje con descuento: 10% Off en compra anticipada. | Oferta última hora Santa Marta | Escápate a Santa Marta con 5% Off. Reserva de último <b>minuto</b> y disfruta frente al mar. | Activa GHL Plus -10% | Escápate con 5% Off en último <b>minuto</b>. Reserva hoy y disfruta Santa Marta. | Ahorra 10% reservando con 30 días. Planifica y asegura tu viaje hoy. | Última hora con 5% Off. Ideal para viajes espontáneos. ¡Reserva ya! | Escápate a Santa Marta con 5% Off en reservas de último <b>minuto</b>. ¡Reserva hoy! | Último <b>minuto</b> con 5% Of en Santa Marta. Plan perfecto para desconectar. ¡Hazlo hoy!</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Sonesta Cusco  USD - ghlsoncusco</div>
+          <div class="meta"><b>Sonesta Cusco - PE:es - PMAX Travel</b> · Performance Max · Grupo "Sonesta Hotel Cusco 20% Off"</div>
+          <div class="meta">Hotel externo: <b>Sonesta Cusco</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Cyber Perú 15% Off<span class="win">Oferta General</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-08-12 08:38</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">Reserva Ahora | El Mejor Precio Online | Hotel ubicado a pocas cuadras de la Plaza Principal de Armas de Cusco | Sonesta Hotel Cusco Esta a Solo 8 Minutos en Coche del Aeropuerto Int. Velasco Astete | Sonesta Hotel Cusco | Hotel con restaurante y Wi‑Fi gratis | Nuestro hotel ideal para niños es una gran opción para tus vacaciones familiares en Cusco. | Sonesta Hotel Cusco En Perú | Ofrecemos a nuestros huéspedes acceso fácil y rápido a la estación de tren | Buscas un hotel con aparcamiento y Wi‑Fi gratuitos, Alójate en Sonesta Hotel Cusco. | Ofertas Únicas. Web Oficial | Visita nuestro hotel en Cusco y disfruta de nuestro bar. Reserva ahora. | 20% Off en Reserva 3 Noches | Reserva 3 Noches 20% Off | Reserva mínimo 3 noches consecutivas y ahorra un 20% de Descuento. Reserva Ya | Al Mejor Precio | Promociones Especiales | Descubre Las Promociones Y Ofertas Irresistibles Del Sonesta Hotel Cusco | Hotel Sonesta Cusco® | El hotel Sonesta Cusco cuenta con Wifi, Lavandería y Room Service. Reserva Online | Compra segura en sitio web | <b>Cyber</b> Perú 15% off Cusco</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Sonesta El Olivar USD - ghlsonolivar</div>
+          <div class="meta"><b>Sonesta Hotel El Olivar - PE:es - BRND</b> · Search · Grupo "Adgroup Todas las Keywords"</div>
+          <div class="meta">Hotel externo: <b>Sonesta El Olivar</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Compra Anticipada 30 Días<span class="win">Compra Anticipada</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-08-31 12:42</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">{KeyWord: Hotel Sonesta El Olivar} | Ingresa a nuestra Web Oficial | <b>Compra</b> de Manera Segura | Hotel Sonesta El Olivar® | En un Exclusivo Sector | Reserva Ya 15% Off | Hotel ideal en San Isidro | GHL Plus 10% de Descuento. | Reserva <b>anticipada</b> y ahorra | 17% Off anticipado Lima | Ahorra en El Olivar Lima | Recibe Hasta un 10% Off registrándote gratis a GHL Plus. Solo en la Web Oficial. | Planifica tu viaje con 45 días de anticipación y ahorra 17% Off | Rodeado de las sedes de las principales empresas del país, centros comerciales y más | Reserva ahora tu alojamiento en la capital de Perú a un precio insuperable aquí,</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Sonesta Miraflores USD - ghlsonmfl</div>
+          <div class="meta"><b>Sonesta Miraflores - PE:es - BRND</b> · Search · Grupo "Grupo de anuncios 1"</div>
+          <div class="meta">Hotel externo: <b>Sonesta Miraflores</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Cyber Perú 15% Off<span class="win">Oferta General</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-08-12 08:38</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text"><b>Cyber</b> Perú 15% off | 15% off hasta diciembre | Reserva tu escapada hoy | Ahorra 15% en Lima | <b>Cyber</b> Perú Sonesta | 15% off en Miraflores | Reserva directo y ahorra | Tu viaje a Lima te espera | Escapada Lima 15% off | Aprovecha <b>Cyber</b> Perú | Reserva antes del 31/07 | Viaja hasta diciembre | Reserva hoy en Miraflores | <b>Cyber</b> Perú: obtén 15% off en alojamiento y viaja hasta el 31 de diciembre de 2026 | Reserva antes del 31 de julio y aprovecha 15% off en Sonesta Miraflores Lima | Hospédate en Miraflores cerca de Larcomar con confort y ubicación privilegiada | Aprovecha <b>Cyber</b> Perú con 15% off en alojamiento. Reserva hasta el 31 de julio</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Sonesta Miraflores USD - ghlsonmfl</div>
+          <div class="meta"><b>Sonesta Miraflores - PE:es - BRND</b> · Search · Grupo "Grupo de anuncios 1"</div>
+          <div class="meta">Hotel externo: <b>Sonesta Miraflores</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Cyber Perú 15% Off<span class="win">Oferta General</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-07-16 14:42</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text"><b>Cyber</b> Perú 15% off | 15% off hasta diciembre | Reserva tu escapada hoy | Ahorra 15% en Lima | <b>Cyber</b> Perú Sonesta | 15% off en Miraflores | Reserva directo y ahorra | Tu viaje a Lima te espera | Escapada Lima 15% off | Aprovecha <b>Cyber</b> Perú | Reserva antes del 31/07 | Viaja hasta diciembre | Reserva hoy en Miraflores | <b>Cyber</b> Perú: obtén 15% off en alojamiento y viaja hasta el 31 de diciembre de 2026 | Reserva antes del 31 de julio y aprovecha 15% off en Sonesta Miraflores Lima | Hospédate en Miraflores cerca de Larcomar con confort y ubicación privilegiada | Aprovecha <b>Cyber</b> Perú con 15% off en alojamiento. Reserva hasta el 31 de julio</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Sonesta Miraflores USD - ghlsonmfl</div>
+          <div class="meta"><b>Sonesta Miraflores - ROW:es - BRND</b> · Search · Grupo "Grupo de anuncios 1"</div>
+          <div class="meta">Hotel externo: <b>Sonesta Miraflores</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Cyber Perú 15% Off<span class="win">Oferta General</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-08-12 08:38</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text"><b>Cyber</b> Perú 15% off | 15% off hasta diciembre | Reserva tu escapada hoy | Ahorra 15% en Lima | <b>Cyber</b> Perú Sonesta | 15% off en Miraflores | Reserva directo y ahorra | Tu viaje a Lima te espera | Escapada Lima 15% off | Aprovecha <b>Cyber</b> Perú | Reserva antes del 31/07 | Viaja hasta diciembre | Reserva hoy en Miraflores | <b>Cyber</b> Perú: obtén 15% off en alojamiento y viaja hasta el 31 de diciembre de 2026 | Reserva antes del 31 de julio y aprovecha 15% off en Sonesta Miraflores Lima | Hospédate en Miraflores cerca de Larcomar con confort y ubicación privilegiada | Aprovecha <b>Cyber</b> Perú con 15% off en alojamiento. Reserva hasta el 31 de julio.</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Sonesta Miraflores USD - ghlsonmfl</div>
+          <div class="meta"><b>Sonesta Miraflores - ROW:es - BRND</b> · Search · Grupo "Grupo de anuncios 1"</div>
+          <div class="meta">Hotel externo: <b>Sonesta Miraflores</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Cyber Perú 15% Off<span class="win">Oferta General</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-07-16 14:42</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text"><b>Cyber</b> Perú 15% off | 15% off hasta diciembre | Reserva tu escapada hoy | Ahorra 15% en Lima | <b>Cyber</b> Perú Sonesta | 15% off en Miraflores | Reserva directo y ahorra | Tu viaje a Lima te espera | Escapada Lima 15% off | Aprovecha <b>Cyber</b> Perú | Reserva antes del 31/07 | Viaja hasta diciembre | Reserva hoy en Miraflores | <b>Cyber</b> Perú: obtén 15% off en alojamiento y viaja hasta el 31 de diciembre de 2026 | Reserva antes del 31 de julio y aprovecha 15% off en Sonesta Miraflores Lima | Hospédate en Miraflores cerca de Larcomar con confort y ubicación privilegiada | Aprovecha <b>Cyber</b> Perú con 15% off en alojamiento. Reserva hasta el 31 de julio.</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">Hotel Arsenal Cartagena COPS - arsenal</div>
+          <div class="meta"><b>Arsenal Hotel Cartagena - CO:es - PMax - Last Minute</b> · Performance Max · Grupo "Oferta Last Minute"</div>
+          <div class="meta">Hotel externo: <b>Arsenal</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Escápate Reserva Último Minuto<span class="win">Ultimo Minuto</span></span>
+        <span class="match-score">coincidencia de texto: 1.0 · 2026-08-31 12:42</span>
+      </div>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">Hotel en la Ciudad Amurallada | Escápate hoy a Cartagena | Último <b>minuto</b> en Cartagena | 10% Off hoy en Cartagena | Oferta last minute Arsenal | Caribe hoy con descuento | Viaja ya a Cartagena | Hotel Arsenal con 10% Off | Escápate al Caribe hoy | Últimas noches con descuento | Vive Cartagena ahora | Aprovecha esta oferta de último <b>minuto</b> y obtén 10% de descuento reservando hoy. | El Caribe no espera. Disfruta Cartagena con un beneficio exclusivo por tiempo limitado. | Escápate ahora a Cartagena y reserva directamente con descuento especial. | Últimos días para viajar y ahorrar. Vive Cartagena con una oferta exclusiva. | Reserva hoy en Hotel Arsenal y disfruta una escapada con beneficio especial. | Escápate hoy a Cartagena con 10% de descuento exclusivo | Disfruta Cartagena ahora con una oferta especial por tiempo limitado | Última oportunidad para escapar a Cartagena con descuento | Viaja hoy a Cartagena | Disfruta Cartagena con 10% Off | Reserva hoy y Ahorra | Descuento para Cartagena | Oferta de último <b>minuto</b>: Viaja a Cartagena hoy y ahorra | El Caribe no espera: Reserva hoy y viaja a Cartagena</div>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <div class="note">
+      Cada alerta requiere confirmación manual: el nombre de la oferta no siempre coincide
+      exactamente con el grupo o el texto del anuncio de Google Ads — es una coincidencia difusa,
+      no una regla exacta. Generado por <code>detectar_ofertas_eliminadas.py</code>.
+    </div>
+    Elaborado por: Agencia Digital · Dirección de Mercadeo · Oficina Central GHL · Septiembre 2026
+  </footer></div>
+<footer>
+    <div class="note">
+      Ninguna de las dos auditorías modifica anuncios automáticamente — cada hallazgo requiere
+      confirmación manual antes de pausar o editar algo.
+    </div>
+    Elaborado por: Agencia Digital · Dirección de Mercadeo · Oficina Central GHL · Septiembre 2026
   </footer>
 </div>
+<script>
+function switchMain(id, btn){
+  document.querySelectorAll('.mainpanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.maintab').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
 </body>
 </html>
