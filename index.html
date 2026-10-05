@@ -360,6 +360,7 @@
     </div>
 <section>
   <div class="section-head"><h2>Consumo por propiedad — Octubre 2026</h2><span class="count">Corte: 04/10/2026 · 43 hoteles</span></div>
+  <div class="search-wrap"><input type="text" class="search-input" placeholder="Buscar hotel..." oninput="filtrarPorHotel(this)"></div>
   
     <div class="tabla-wrap">
     <table class="consumo">
@@ -896,6 +897,7 @@
         </tr></tbody>
     </table>
     </div>
+  <div class="sin-resultados">Sin resultados para esa búsqueda.</div>
 </section></div>
 <footer>
     <div class="note">
@@ -914,17 +916,27 @@ function switchMain(id, btn){
   btn.classList.add('active');
 }
 function filtrarPorHotel(input){
-  var panel = input.closest('.mainpanel') || document;
   var q = input.value.trim().toLowerCase();
   var seccion = input.closest('section');
   var visibles = 0;
-  seccion.querySelectorAll('.card').forEach(function(card){
-    var nombre = card.querySelector('.cuenta');
-    var texto = (nombre ? nombre.textContent : card.textContent).toLowerCase();
-    var coincide = !q || texto.indexOf(q) !== -1;
-    card.hidden = !coincide;
-    if (coincide) visibles++;
-  });
+  var cards = seccion.querySelectorAll('.card');
+  if (cards.length) {
+    cards.forEach(function(card){
+      var nombre = card.querySelector('.cuenta');
+      var texto = (nombre ? nombre.textContent : card.textContent).toLowerCase();
+      var coincide = !q || texto.indexOf(q) !== -1;
+      card.hidden = !coincide;
+      if (coincide) visibles++;
+    });
+  } else {
+    seccion.querySelectorAll('table tbody tr').forEach(function(fila){
+      var celda = fila.querySelector('td:first-child');
+      var texto = (celda ? celda.textContent : fila.textContent).toLowerCase();
+      var coincide = !q || texto.indexOf(q) !== -1;
+      fila.hidden = !coincide;
+      if (coincide) visibles++;
+    });
+  }
   var sinRes = seccion.querySelector('.sin-resultados');
   if (sinRes) sinRes.style.display = (visibles === 0 && q) ? 'block' : 'none';
 }
