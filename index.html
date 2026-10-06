@@ -118,6 +118,14 @@
   }
   .search-input:focus{outline:2px solid var(--seablue); outline-offset:1px}
   .sin-resultados{display:none; padding:10px 0 4px; color:var(--text-dim); font-style:italic; font-size:12.5px}
+
+  th.sortable{cursor:pointer; user-select:none}
+  th.sortable:hover{color:var(--ocean)}
+  :root[data-theme="dark"] th.sortable:hover{color:#8FC1E8}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) th.sortable:hover{color:#8FC1E8}}
+  th.sortable::after{content:"\2195"; margin-left:4px; opacity:.35; font-size:10px}
+  th.sortable.sort-asc::after{content:"\2191"; opacity:1}
+  th.sortable.sort-desc::after{content:"\2193"; opacity:1}
 </style>
 </head>
 <body>
@@ -366,534 +374,534 @@
     <table class="consumo">
       <thead>
         <tr>
-          <th>Hotel</th>
-          <th>Moneda</th>
-          <th>Inversión a la fecha</th>
-          <th>Inversión aprobada del mes</th>
-          <th>¿Qué % del aprobado se ha invertido?</th>
-          <th>Ritmo vs esperado</th>
-          <th>Remanente del mes</th>
-          <th>Remanente total acumulado año</th>
-          <th>Costo por canal (mes actual)</th>
-          <th>Costo por canal acumulado año</th>
+          <th class="sortable" onclick="ordenarTabla(this)">Hotel</th>
+          <th class="sortable" onclick="ordenarTabla(this)">Moneda</th>
+          <th class="sortable" onclick="ordenarTabla(this)">Inversión a la fecha</th>
+          <th class="sortable" onclick="ordenarTabla(this)">Inversión aprobada del mes</th>
+          <th class="sortable" onclick="ordenarTabla(this)">¿Qué % del aprobado se ha invertido?</th>
+          <th class="sortable" onclick="ordenarTabla(this)">Ritmo vs esperado</th>
+          <th class="sortable" onclick="ordenarTabla(this)">Remanente del mes</th>
+          <th class="sortable" onclick="ordenarTabla(this)">Remanente total acumulado año</th>
+          <th class="sortable" onclick="ordenarTabla(this)">Costo por canal (mes actual)</th>
+          <th class="sortable" onclick="ordenarTabla(this)">Costo por canal acumulado año</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Biohotel Organic Suites</td>
           <td class="moneda">COP</td>
-          <td>510,412</td>
-          <td>4,295,000</td>
-          <td>11.9%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">3,784,588</td>
-          <td class="remanente">5,270,518</td>
-          <td><span class="pill ok">10%</span></td>
-          <td><span class="pill canal-alto">19%</span></td>
+          <td data-value="510411.55">510,412</td>
+          <td data-value="4295000.0">4,295,000</td>
+          <td data-value="11.88">11.9%</td>
+          <td data-value="-1.0199999999999996"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="3784588.45">3,784,588</td>
+          <td class="remanente" data-value="5270518.45">5,270,518</td>
+          <td data-value="9.68"><span class="pill ok">10%</span></td>
+          <td data-value="18.83"><span class="pill canal-alto">19%</span></td>
         </tr>
         <tr>
           <td>GHL Armeria Real Hotel and Spa</td>
           <td class="moneda">COP</td>
-          <td>686,196</td>
-          <td>5,737,000</td>
-          <td>12.0%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">5,050,804</td>
-          <td class="remanente">8,337,588</td>
-          <td><span class="pill canal-alto">27%</span></td>
-          <td><span class="pill ok">15%</span></td>
+          <td data-value="686195.76">686,196</td>
+          <td data-value="5737000.0">5,737,000</td>
+          <td data-value="11.96">12.0%</td>
+          <td data-value="-0.9399999999999995"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="5050804.24">5,050,804</td>
+          <td class="remanente" data-value="8337588.24">8,337,588</td>
+          <td data-value="27.19"><span class="pill canal-alto">27%</span></td>
+          <td data-value="14.58"><span class="pill ok">15%</span></td>
         </tr>
         <tr>
           <td>GHL Arsenal Hotel</td>
           <td class="moneda">COP</td>
-          <td>1,186,331</td>
-          <td>8,417,000</td>
-          <td>14.1%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">7,230,669</td>
-          <td class="remanente">17,864,139</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">12%</span></td>
+          <td data-value="1186330.81">1,186,331</td>
+          <td data-value="8417000.0">8,417,000</td>
+          <td data-value="14.09">14.1%</td>
+          <td data-value="1.1899999999999995"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="7230669.19">7,230,669</td>
+          <td class="remanente" data-value="17864139.19">17,864,139</td>
+          <td data-value="9.24"><span class="pill ok">9%</span></td>
+          <td data-value="12.36"><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>GHL Hotel Barranquilla</td>
           <td class="moneda">COP</td>
-          <td>401,446</td>
-          <td>3,389,000</td>
-          <td>11.8%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">2,987,554</td>
-          <td class="remanente">4,015,800</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">14%</span></td>
+          <td data-value="401446.29">401,446</td>
+          <td data-value="3389000.0">3,389,000</td>
+          <td data-value="11.85">11.8%</td>
+          <td data-value="-1.0500000000000007"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="2987553.71">2,987,554</td>
+          <td class="remanente" data-value="4015799.71">4,015,800</td>
+          <td data-value="9.05"><span class="pill ok">9%</span></td>
+          <td data-value="14.18"><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>GHL Hotel Lago Titicaca</td>
           <td class="moneda">USD</td>
-          <td>56.46</td>
-          <td>400.00</td>
-          <td>14.1%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">343.54</td>
-          <td class="remanente">584.40</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">11%</span></td>
+          <td data-value="56.46">56.46</td>
+          <td data-value="400.0">400.00</td>
+          <td data-value="14.12">14.1%</td>
+          <td data-value="1.2199999999999989"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="343.54">343.54</td>
+          <td class="remanente" data-value="584.4">584.40</td>
+          <td data-value="8.01"><span class="pill ok">8%</span></td>
+          <td data-value="11.12"><span class="pill ok">11%</span></td>
         </tr>
         <tr>
           <td>GHL San Lazaro Art Hotel</td>
           <td class="moneda">COP</td>
-          <td>355,089</td>
-          <td>3,646,000</td>
-          <td>9.7%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">3,290,911</td>
-          <td class="remanente">8,921,620</td>
-          <td><span class="pill ok">14%</span></td>
-          <td><span class="pill ok">15%</span></td>
+          <td data-value="355089.32">355,089</td>
+          <td data-value="3646000.0">3,646,000</td>
+          <td data-value="9.74">9.7%</td>
+          <td data-value="-3.16"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="3290910.68">3,290,911</td>
+          <td class="remanente" data-value="8921619.68">8,921,620</td>
+          <td data-value="13.52"><span class="pill ok">14%</span></td>
+          <td data-value="14.68"><span class="pill ok">15%</span></td>
         </tr>
         <tr>
           <td>GHL Style Hotel Bogotá Occidente</td>
           <td class="moneda">COP</td>
-          <td>479,259</td>
-          <td>4,406,000</td>
-          <td>10.9%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">3,926,741</td>
-          <td class="remanente">6,174,735</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill canal-alto">15%</span></td>
+          <td data-value="479259.45">479,259</td>
+          <td data-value="4406000.0">4,406,000</td>
+          <td data-value="10.88">10.9%</td>
+          <td data-value="-2.0199999999999996"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="3926740.55">3,926,741</td>
+          <td class="remanente" data-value="6174734.55">6,174,735</td>
+          <td data-value="8.77"><span class="pill ok">9%</span></td>
+          <td data-value="15.24"><span class="pill canal-alto">15%</span></td>
         </tr>
         <tr>
           <td>Geotel Antofagasta</td>
           <td class="moneda">USD</td>
-          <td>135.96</td>
-          <td>945.00</td>
-          <td>14.4%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">809.04</td>
-          <td class="remanente">1,050.57</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">12%</span></td>
+          <td data-value="135.96">135.96</td>
+          <td data-value="945.0">945.00</td>
+          <td data-value="14.39">14.4%</td>
+          <td data-value="1.4900000000000002"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="809.04">809.04</td>
+          <td class="remanente" data-value="1050.57">1,050.57</td>
+          <td data-value="9.13"><span class="pill ok">9%</span></td>
+          <td data-value="12.12"><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Geotel Calama</td>
           <td class="moneda">USD</td>
-          <td>83.71</td>
-          <td>610.00</td>
-          <td>13.7%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">526.29</td>
-          <td class="remanente">719.28</td>
-          <td><span class="pill canal-alto">15%</span></td>
-          <td><span class="pill canal-alto">16%</span></td>
+          <td data-value="83.71">83.71</td>
+          <td data-value="610.0">610.00</td>
+          <td data-value="13.72">13.7%</td>
+          <td data-value="0.8200000000000003"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="526.29">526.29</td>
+          <td class="remanente" data-value="719.28">719.28</td>
+          <td data-value="15.42"><span class="pill canal-alto">15%</span></td>
+          <td data-value="15.84"><span class="pill canal-alto">16%</span></td>
         </tr>
         <tr>
           <td>Hotel Bioxury</td>
           <td class="moneda">COP</td>
-          <td>1,694,319</td>
-          <td>5,755,000</td>
-          <td>29.4%</td>
-          <td><span class="pill over">+16.5 pts</span></td>
-          <td class="remanente">4,060,681</td>
-          <td class="remanente">5,697,968</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">14%</span></td>
+          <td data-value="1694319.48">1,694,319</td>
+          <td data-value="5755000.0">5,755,000</td>
+          <td data-value="29.44">29.4%</td>
+          <td data-value="16.54"><span class="pill over">+16.5 pts</span></td>
+          <td class="remanente" data-value="4060680.52">4,060,681</td>
+          <td class="remanente" data-value="5697967.52">5,697,968</td>
+          <td data-value="9.12"><span class="pill ok">9%</span></td>
+          <td data-value="14.18"><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Abadía Plaza</td>
           <td class="moneda">COP</td>
-          <td>259,352</td>
-          <td>2,206,000</td>
-          <td>11.8%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">1,946,648</td>
-          <td class="remanente">4,415,193</td>
-          <td><span class="pill ok">11%</span></td>
-          <td><span class="pill canal-alto">23%</span></td>
+          <td data-value="259352.0">259,352</td>
+          <td data-value="2206000.0">2,206,000</td>
+          <td data-value="11.76">11.8%</td>
+          <td data-value="-1.1400000000000006"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="1946648.0">1,946,648</td>
+          <td class="remanente" data-value="4415193.0">4,415,193</td>
+          <td data-value="10.89"><span class="pill ok">11%</span></td>
+          <td data-value="23.49"><span class="pill canal-alto">23%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Capital</td>
           <td class="moneda">COP</td>
-          <td>1,298,170</td>
-          <td>11,285,000</td>
-          <td>11.5%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">9,986,830</td>
-          <td class="remanente">12,271,397</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">13%</span></td>
+          <td data-value="1298169.92">1,298,170</td>
+          <td data-value="11285000.0">11,285,000</td>
+          <td data-value="11.5">11.5%</td>
+          <td data-value="-1.4000000000000004"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="9986830.08">9,986,830</td>
+          <td class="remanente" data-value="12271397.08">12,271,397</td>
+          <td data-value="9.41"><span class="pill ok">9%</span></td>
+          <td data-value="13.33"><span class="pill ok">13%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Collection 93</td>
           <td class="moneda">COP</td>
-          <td>251,379</td>
-          <td>2,390,000</td>
-          <td>10.5%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">2,138,621</td>
-          <td class="remanente">4,112,864</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">12%</span></td>
+          <td data-value="251379.1">251,379</td>
+          <td data-value="2390000.0">2,390,000</td>
+          <td data-value="10.52">10.5%</td>
+          <td data-value="-2.380000000000001"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="2138620.9">2,138,621</td>
+          <td class="remanente" data-value="4112863.9">4,112,864</td>
+          <td data-value="8.75"><span class="pill ok">9%</span></td>
+          <td data-value="11.7"><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Grand Villavicencio</td>
           <td class="moneda">COP</td>
-          <td>904,059</td>
-          <td>8,054,000</td>
-          <td>11.2%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">7,149,941</td>
-          <td class="remanente">7,570,841</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">14%</span></td>
+          <td data-value="904059.05">904,059</td>
+          <td data-value="8054000.0">8,054,000</td>
+          <td data-value="11.22">11.2%</td>
+          <td data-value="-1.6799999999999997"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="7149940.95">7,149,941</td>
+          <td class="remanente" data-value="7570840.95">7,570,841</td>
+          <td data-value="9.03"><span class="pill ok">9%</span></td>
+          <td data-value="13.86"><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Hamilton</td>
           <td class="moneda">COP</td>
-          <td>218,035</td>
-          <td>2,220,000</td>
-          <td>9.8%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">2,001,965</td>
-          <td class="remanente">4,638,616</td>
-          <td><span class="pill ok">11%</span></td>
-          <td><span class="pill ok">13%</span></td>
+          <td data-value="218035.07">218,035</td>
+          <td data-value="2220000.0">2,220,000</td>
+          <td data-value="9.82">9.8%</td>
+          <td data-value="-3.08"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="2001964.93">2,001,965</td>
+          <td class="remanente" data-value="4638615.93">4,638,616</td>
+          <td data-value="10.8"><span class="pill ok">11%</span></td>
+          <td data-value="13.07"><span class="pill ok">13%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Montería</td>
           <td class="moneda">COP</td>
-          <td>319,524</td>
-          <td>4,051,000</td>
-          <td>7.9%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">3,731,476</td>
-          <td class="remanente">7,628,891</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">12%</span></td>
+          <td data-value="319524.42">319,524</td>
+          <td data-value="4051000.0">4,051,000</td>
+          <td data-value="7.89">7.9%</td>
+          <td data-value="-5.010000000000001"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="3731475.58">3,731,476</td>
+          <td class="remanente" data-value="7628890.58">7,628,891</td>
+          <td data-value="7.99"><span class="pill ok">8%</span></td>
+          <td data-value="11.9"><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Portón Medellín</td>
           <td class="moneda">COP</td>
-          <td>216,569</td>
-          <td>2,624,810</td>
-          <td>8.2%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">2,408,241</td>
-          <td class="remanente">4,081,705</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">13%</span></td>
+          <td data-value="216569.11">216,569</td>
+          <td data-value="2624810.0">2,624,810</td>
+          <td data-value="8.25">8.2%</td>
+          <td data-value="-4.65"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="2408240.89">2,408,241</td>
+          <td class="remanente" data-value="4081704.89">4,081,705</td>
+          <td data-value="7.59"><span class="pill ok">8%</span></td>
+          <td data-value="13.4"><span class="pill ok">13%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Relax Corales de Indias</td>
           <td class="moneda">COP</td>
-          <td>1,571,437</td>
-          <td>20,707,000</td>
-          <td>7.6%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">19,135,563</td>
-          <td class="remanente">19,342,110</td>
-          <td><span class="pill ok">11%</span></td>
-          <td><span class="pill canal-alto">16%</span></td>
+          <td data-value="1571436.86">1,571,437</td>
+          <td data-value="20707000.0">20,707,000</td>
+          <td data-value="7.59">7.6%</td>
+          <td data-value="-5.3100000000000005"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="19135563.14">19,135,563</td>
+          <td class="remanente" data-value="19342110.14">19,342,110</td>
+          <td data-value="10.88"><span class="pill ok">11%</span></td>
+          <td data-value="16.47"><span class="pill canal-alto">16%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Relax Costa Azul</td>
           <td class="moneda">COP</td>
-          <td>1,650,318</td>
-          <td>14,837,500</td>
-          <td>11.1%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">13,187,182</td>
-          <td class="remanente">15,630,748</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">15%</span></td>
+          <td data-value="1650318.23">1,650,318</td>
+          <td data-value="14837500.0">14,837,500</td>
+          <td data-value="11.12">11.1%</td>
+          <td data-value="-1.7800000000000011"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="13187181.77">13,187,182</td>
+          <td class="remanente" data-value="15630747.77">15,630,748</td>
+          <td data-value="8.55"><span class="pill ok">9%</span></td>
+          <td data-value="14.61"><span class="pill ok">15%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Relax Hotel Club El Puente</td>
           <td class="moneda">COP</td>
-          <td>801,813</td>
-          <td>6,293,000</td>
-          <td>12.7%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">5,491,187</td>
-          <td class="remanente">4,199,291</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">12%</span></td>
+          <td data-value="801813.04">801,813</td>
+          <td data-value="6293000.0">6,293,000</td>
+          <td data-value="12.74">12.7%</td>
+          <td data-value="-0.16000000000000014"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="5491186.96">5,491,187</td>
+          <td class="remanente" data-value="4199290.96">4,199,291</td>
+          <td data-value="8.27"><span class="pill ok">8%</span></td>
+          <td data-value="12.05"><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Relax Sunrise</td>
           <td class="moneda">COP</td>
-          <td>1,779,414</td>
-          <td>13,361,000</td>
-          <td>13.3%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">11,581,586</td>
-          <td class="remanente">17,936,658</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">15%</span></td>
+          <td data-value="1779414.31">1,779,414</td>
+          <td data-value="13361000.0">13,361,000</td>
+          <td data-value="13.32">13.3%</td>
+          <td data-value="0.41999999999999993"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="11581585.69">11,581,586</td>
+          <td class="remanente" data-value="17936657.69">17,936,658</td>
+          <td data-value="8.32"><span class="pill ok">8%</span></td>
+          <td data-value="14.59"><span class="pill ok">15%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Style Barrancabermeja</td>
           <td class="moneda">COP</td>
-          <td>96,449</td>
-          <td>957,000</td>
-          <td>10.1%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">860,551</td>
-          <td class="remanente">1,558,001</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill canal-alto">16%</span></td>
+          <td data-value="96449.19">96,449</td>
+          <td data-value="957000.0">957,000</td>
+          <td data-value="10.08">10.1%</td>
+          <td data-value="-2.8200000000000003"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="860550.81">860,551</td>
+          <td class="remanente" data-value="1558000.81">1,558,001</td>
+          <td data-value="7.85"><span class="pill ok">8%</span></td>
+          <td data-value="15.96"><span class="pill canal-alto">16%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Style Neiva</td>
           <td class="moneda">COP</td>
-          <td>414,708</td>
-          <td>3,016,000</td>
-          <td>13.8%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">2,601,292</td>
-          <td class="remanente">5,165,341</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">12%</span></td>
+          <td data-value="414707.85">414,708</td>
+          <td data-value="3016000.0">3,016,000</td>
+          <td data-value="13.75">13.8%</td>
+          <td data-value="0.8499999999999996"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="2601292.15">2,601,292</td>
+          <td class="remanente" data-value="5165341.15">5,165,341</td>
+          <td data-value="9.4"><span class="pill ok">9%</span></td>
+          <td data-value="11.77"><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Style Yopal</td>
           <td class="moneda">COP</td>
-          <td>234,635</td>
-          <td>1,800,000</td>
-          <td>13.0%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">1,565,365</td>
-          <td class="remanente">2,142,022</td>
-          <td><span class="pill ok">12%</span></td>
-          <td><span class="pill canal-alto">16%</span></td>
+          <td data-value="234635.37">234,635</td>
+          <td data-value="1800000.0">1,800,000</td>
+          <td data-value="13.04">13.0%</td>
+          <td data-value="0.1399999999999988"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="1565364.63">1,565,365</td>
+          <td class="remanente" data-value="2142021.63">2,142,022</td>
+          <td data-value="11.54"><span class="pill ok">12%</span></td>
+          <td data-value="16.21"><span class="pill canal-alto">16%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Bogotá</td>
           <td class="moneda">COP</td>
-          <td>1,064,550</td>
-          <td>7,211,000</td>
-          <td>14.8%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">6,146,450</td>
-          <td class="remanente">8,263,535</td>
-          <td><span class="pill ok">10%</span></td>
-          <td><span class="pill ok">14%</span></td>
+          <td data-value="1064549.63">1,064,550</td>
+          <td data-value="7211000.0">7,211,000</td>
+          <td data-value="14.76">14.8%</td>
+          <td data-value="1.8599999999999994"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="6146450.37">6,146,450</td>
+          <td class="remanente" data-value="8263535.37">8,263,535</td>
+          <td data-value="10.39"><span class="pill ok">10%</span></td>
+          <td data-value="14.19"><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Cartagena</td>
           <td class="moneda">COP</td>
-          <td>2,164,077</td>
-          <td>15,806,724</td>
-          <td>13.7%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">13,642,647</td>
-          <td class="remanente">13,643,017</td>
-          <td><span class="pill ok">10%</span></td>
-          <td><span class="pill ok">15%</span></td>
+          <td data-value="2164077.3">2,164,077</td>
+          <td data-value="15806724.0">15,806,724</td>
+          <td data-value="13.69">13.7%</td>
+          <td data-value="0.7899999999999991"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="13642646.7">13,642,647</td>
+          <td class="remanente" data-value="13643016.7">13,643,017</td>
+          <td data-value="9.55"><span class="pill ok">10%</span></td>
+          <td data-value="14.61"><span class="pill ok">15%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta El Olivar</td>
           <td class="moneda">USD</td>
-          <td>167.73</td>
-          <td>1,278.00</td>
-          <td>13.1%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">1,110.27</td>
-          <td class="remanente">1,529.10</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">14%</span></td>
+          <td data-value="167.73">167.73</td>
+          <td data-value="1278.0">1,278.00</td>
+          <td data-value="13.12">13.1%</td>
+          <td data-value="0.21999999999999886"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="1110.27">1,110.27</td>
+          <td class="remanente" data-value="1529.1">1,529.10</td>
+          <td data-value="8.45"><span class="pill ok">8%</span></td>
+          <td data-value="14.18"><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Osorno</td>
           <td class="moneda">USD</td>
-          <td>82.19</td>
-          <td>797.00</td>
-          <td>10.3%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">714.81</td>
-          <td class="remanente">841.65</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">10%</span></td>
+          <td data-value="82.19">82.19</td>
+          <td data-value="797.0">797.00</td>
+          <td data-value="10.31">10.3%</td>
+          <td data-value="-2.59"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="714.81">714.81</td>
+          <td class="remanente" data-value="841.65">841.65</td>
+          <td data-value="8.13"><span class="pill ok">8%</span></td>
+          <td data-value="10.45"><span class="pill ok">10%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Pereira</td>
           <td class="moneda">COP</td>
-          <td>1,375,863</td>
-          <td>10,526,000</td>
-          <td>13.1%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">9,150,137</td>
-          <td class="remanente">12,233,230</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">11%</span></td>
+          <td data-value="1375863.26">1,375,863</td>
+          <td data-value="10526000.0">10,526,000</td>
+          <td data-value="13.07">13.1%</td>
+          <td data-value="0.16999999999999993"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="9150136.74">9,150,137</td>
+          <td class="remanente" data-value="12233229.74">12,233,230</td>
+          <td data-value="8.34"><span class="pill ok">8%</span></td>
+          <td data-value="11.36"><span class="pill ok">11%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Posadas del Inca Puno</td>
           <td class="moneda">USD</td>
-          <td>16.56</td>
-          <td>323.00</td>
-          <td>5.1%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">306.44</td>
-          <td class="remanente">630.53</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill canal-alto">15%</span></td>
+          <td data-value="16.56">16.56</td>
+          <td data-value="323.0">323.00</td>
+          <td data-value="5.13">5.1%</td>
+          <td data-value="-7.7700000000000005"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="306.44">306.44</td>
+          <td class="remanente" data-value="630.53">630.53</td>
+          <td data-value="7.95"><span class="pill ok">8%</span></td>
+          <td data-value="15.23"><span class="pill canal-alto">15%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Posadas del Inca Yucay</td>
           <td class="moneda">USD</td>
-          <td>60.71</td>
-          <td>483.00</td>
-          <td>12.6%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">422.29</td>
-          <td class="remanente">720.83</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">11%</span></td>
+          <td data-value="60.71">60.71</td>
+          <td data-value="483.0">483.00</td>
+          <td data-value="12.57">12.6%</td>
+          <td data-value="-0.33000000000000007"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="422.29">422.29</td>
+          <td class="remanente" data-value="720.83">720.83</td>
+          <td data-value="7.73"><span class="pill ok">8%</span></td>
+          <td data-value="10.72"><span class="pill ok">11%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Valledupar</td>
           <td class="moneda">COP</td>
-          <td>708,276</td>
-          <td>5,989,000</td>
-          <td>11.8%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">5,280,724</td>
-          <td class="remanente">6,123,233</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">14%</span></td>
+          <td data-value="708276.21">708,276</td>
+          <td data-value="5989000.0">5,989,000</td>
+          <td data-value="11.83">11.8%</td>
+          <td data-value="-1.0700000000000003"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="5280723.79">5,280,724</td>
+          <td class="remanente" data-value="6123232.79">6,123,233</td>
+          <td data-value="8.63"><span class="pill ok">9%</span></td>
+          <td data-value="13.92"><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>Irotama Resort</td>
           <td class="moneda">COP</td>
-          <td>2,500,147</td>
-          <td>35,000,000</td>
-          <td>7.1%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">32,499,853</td>
-          <td class="remanente">0</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">14%</span></td>
+          <td data-value="2500147.38">2,500,147</td>
+          <td data-value="35000000.0">35,000,000</td>
+          <td data-value="7.14">7.1%</td>
+          <td data-value="-5.760000000000001"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="32499852.62">32,499,853</td>
+          <td class="remanente" data-value="0.0">0</td>
+          <td data-value="7.9"><span class="pill ok">8%</span></td>
+          <td data-value="13.65"><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>Latam Hotel Plaza Pradera Quetzaltenango</td>
           <td class="moneda">USD</td>
-          <td>46.33</td>
-          <td>350.00</td>
-          <td>13.2%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">303.67</td>
-          <td class="remanente">528.13</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill canal-alto">19%</span></td>
+          <td data-value="46.33">46.33</td>
+          <td data-value="350.0">350.00</td>
+          <td data-value="13.24">13.2%</td>
+          <td data-value="0.33999999999999986"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="303.67">303.67</td>
+          <td class="remanente" data-value="528.13">528.13</td>
+          <td data-value="9.11"><span class="pill ok">9%</span></td>
+          <td data-value="18.62"><span class="pill canal-alto">19%</span></td>
         </tr>
         <tr>
           <td>Park Lake Luxury Hotel</td>
           <td class="moneda">USD</td>
-          <td>488.05</td>
-          <td>3,736.00</td>
-          <td>13.1%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">3,247.95</td>
-          <td class="remanente">4,071.01</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">13%</span></td>
+          <td data-value="488.05">488.05</td>
+          <td data-value="3736.0">3,736.00</td>
+          <td data-value="13.06">13.1%</td>
+          <td data-value="0.16000000000000014"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="3247.95">3,247.95</td>
+          <td class="remanente" data-value="4071.01">4,071.01</td>
+          <td data-value="8.77"><span class="pill ok">9%</span></td>
+          <td data-value="13.01"><span class="pill ok">13%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Arequipa</td>
           <td class="moneda">USD</td>
-          <td>106.85</td>
-          <td>880.00</td>
-          <td>12.1%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">773.15</td>
-          <td class="remanente">925.06</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill canal-alto">19%</span></td>
+          <td data-value="106.85">106.85</td>
+          <td data-value="880.0">880.00</td>
+          <td data-value="12.14">12.1%</td>
+          <td data-value="-0.7599999999999998"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="773.15">773.15</td>
+          <td class="remanente" data-value="925.06">925.06</td>
+          <td data-value="9.11"><span class="pill ok">9%</span></td>
+          <td data-value="19.48"><span class="pill canal-alto">19%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Bucaramanga</td>
           <td class="moneda">COP</td>
-          <td>817,137</td>
-          <td>7,605,000</td>
-          <td>10.7%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">6,787,863</td>
-          <td class="remanente">8,948,669</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">15%</span></td>
+          <td data-value="817137.19">817,137</td>
+          <td data-value="7605000.0">7,605,000</td>
+          <td data-value="10.74">10.7%</td>
+          <td data-value="-2.16"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="6787862.81">6,787,863</td>
+          <td class="remanente" data-value="8948668.81">8,948,669</td>
+          <td data-value="8.99"><span class="pill ok">9%</span></td>
+          <td data-value="14.99"><span class="pill ok">15%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Cali</td>
           <td class="moneda">COP</td>
-          <td>1,211,464</td>
-          <td>7,498,000</td>
-          <td>16.2%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">6,286,536</td>
-          <td class="remanente">9,002,283</td>
-          <td><span class="pill canal-alto">18%</span></td>
-          <td><span class="pill canal-alto">18%</span></td>
+          <td data-value="1211464.4">1,211,464</td>
+          <td data-value="7498000.0">7,498,000</td>
+          <td data-value="16.16">16.2%</td>
+          <td data-value="3.26"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="6286535.6">6,286,536</td>
+          <td class="remanente" data-value="9002282.6">9,002,283</td>
+          <td data-value="18.29"><span class="pill canal-alto">18%</span></td>
+          <td data-value="17.51"><span class="pill canal-alto">18%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Cusco</td>
           <td class="moneda">USD</td>
-          <td>94.97</td>
-          <td>1,050.00</td>
-          <td>9.0%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">955.03</td>
-          <td class="remanente">1,944.32</td>
-          <td><span class="pill ok">8%</span></td>
-          <td><span class="pill ok">11%</span></td>
+          <td data-value="94.97">94.97</td>
+          <td data-value="1050.0">1,050.00</td>
+          <td data-value="9.04">9.0%</td>
+          <td data-value="-3.860000000000001"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="955.03">955.03</td>
+          <td class="remanente" data-value="1944.32">1,944.32</td>
+          <td data-value="7.83"><span class="pill ok">8%</span></td>
+          <td data-value="11.29"><span class="pill ok">11%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Ibague</td>
           <td class="moneda">COP</td>
-          <td>603,555</td>
-          <td>3,901,000</td>
-          <td>15.5%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">3,297,445</td>
-          <td class="remanente">3,442,556</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill ok">12%</span></td>
+          <td data-value="603554.86">603,555</td>
+          <td data-value="3901000.0">3,901,000</td>
+          <td data-value="15.47">15.5%</td>
+          <td data-value="2.5700000000000003"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="3297445.14">3,297,445</td>
+          <td class="remanente" data-value="3442556.14">3,442,556</td>
+          <td data-value="9.31"><span class="pill ok">9%</span></td>
+          <td data-value="12.41"><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Loja</td>
           <td class="moneda">USD</td>
-          <td>26.83</td>
-          <td>165.00</td>
-          <td>16.3%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">138.17</td>
-          <td class="remanente">243.41</td>
-          <td><span class="pill ok">12%</span></td>
-          <td><span class="pill canal-alto">16%</span></td>
+          <td data-value="26.83">26.83</td>
+          <td data-value="165.0">165.00</td>
+          <td data-value="16.26">16.3%</td>
+          <td data-value="3.360000000000001"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="138.17">138.17</td>
+          <td class="remanente" data-value="243.41">243.41</td>
+          <td data-value="11.51"><span class="pill ok">12%</span></td>
+          <td data-value="16.42"><span class="pill canal-alto">16%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Miraflores</td>
           <td class="moneda">USD</td>
-          <td>140.96</td>
-          <td>1,056.56</td>
-          <td>13.3%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">915.60</td>
-          <td class="remanente">1,814.92</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill canal-alto">29%</span></td>
+          <td data-value="140.96">140.96</td>
+          <td data-value="1056.55880603904">1,056.56</td>
+          <td data-value="13.34">13.3%</td>
+          <td data-value="0.4399999999999995"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="915.6">915.60</td>
+          <td class="remanente" data-value="1814.92">1,814.92</td>
+          <td data-value="8.93"><span class="pill ok">9%</span></td>
+          <td data-value="28.76"><span class="pill canal-alto">29%</span></td>
         </tr>
         <tr>
           <td>Torre Monserrate (Tequendama)</td>
           <td class="moneda">COP</td>
-          <td>630,602</td>
-          <td>5,400,000</td>
-          <td>11.7%</td>
-          <td><span class="pill ok">En ritmo</span></td>
-          <td class="remanente">4,769,398</td>
-          <td class="remanente">7,220,200</td>
-          <td><span class="pill ok">9%</span></td>
-          <td><span class="pill canal-alto">15%</span></td>
+          <td data-value="630602.39">630,602</td>
+          <td data-value="5400000.0">5,400,000</td>
+          <td data-value="11.68">11.7%</td>
+          <td data-value="-1.2200000000000006"><span class="pill ok">En ritmo</span></td>
+          <td class="remanente" data-value="4769397.61">4,769,398</td>
+          <td class="remanente" data-value="7220199.61">7,220,200</td>
+          <td data-value="8.9"><span class="pill ok">9%</span></td>
+          <td data-value="15.31"><span class="pill canal-alto">15%</span></td>
         </tr></tbody>
     </table>
     </div>
@@ -939,6 +947,34 @@ function filtrarPorHotel(input){
   }
   var sinRes = seccion.querySelector('.sin-resultados');
   if (sinRes) sinRes.style.display = (visibles === 0 && q) ? 'block' : 'none';
+}
+function ordenarTabla(th){
+  var tabla = th.closest('table');
+  var idx = Array.prototype.indexOf.call(th.parentElement.children, th);
+  var tbody = tabla.tBodies[0];
+  var asc = !th.classList.contains('sort-asc');
+
+  Array.prototype.forEach.call(th.parentElement.children, function(h){
+    h.classList.remove('sort-asc', 'sort-desc');
+  });
+  th.classList.add(asc ? 'sort-asc' : 'sort-desc');
+
+  function valorDeFila(fila){
+    var celda = fila.children[idx];
+    if (celda.hasAttribute('data-value')){
+      var v = parseFloat(celda.getAttribute('data-value'));
+      return isNaN(v) ? null : v;
+    }
+    return celda.textContent.trim().toLowerCase();
+  }
+
+  Array.prototype.slice.call(tbody.rows).sort(function(a, b){
+    var va = valorDeFila(a), vb = valorDeFila(b);
+    if (va === null || vb === null) return va === vb ? 0 : (va === null ? 1 : -1);
+    if (va < vb) return asc ? -1 : 1;
+    if (va > vb) return asc ? 1 : -1;
+    return 0;
+  }).forEach(function(fila){ tbody.appendChild(fila); });
 }
 </script>
 </body>
