@@ -138,7 +138,7 @@
     <span>Canales: <b>Search · Display · Demand Gen · Performance Max</b></span>
   </div>
 </div>
-<div class="maintabs"><button class="maintab active" onclick="switchMain('tab-vencidas',this)">Fechas vencidas<span class="tag zero">0</span></button><button class="maintab" onclick="switchMain('tab-eliminadas',this)">Ofertas eliminadas / modificadas<span class="tag">5</span></button><button class="maintab" onclick="switchMain('tab-consumo',this)">Consumo e Inversión<span class="tag">1</span></button></div>
+<div class="maintabs"><button class="maintab active" onclick="switchMain('tab-vencidas',this)">Fechas vencidas<span class="tag zero">0</span></button><button class="maintab" onclick="switchMain('tab-eliminadas',this)">Ofertas eliminadas / modificadas<span class="tag">8</span></button><button class="maintab" onclick="switchMain('tab-consumo',this)">Consumo e Inversión<span class="tag">1</span></button></div>
 <div class="wrap">
 <div class="mainpanel active" id="tab-vencidas">
   <div class="kpis">
@@ -225,7 +225,7 @@
     <div class="kpi"><div class="val">95</div><div class="lbl">Ofertas activas en el dashboard externo</div></div>
     <div class="kpi"><div class="val">53</div><div class="lbl">Ofertas marcadas como eliminadas</div></div>
     <div class="kpi"><div class="val">3</div><div class="lbl">Ofertas marcadas como modificadas</div></div>
-    <div class="kpi neg"><div class="val">5</div><div class="lbl">Anuncios que aún comunican una oferta eliminada</div></div>
+    <div class="kpi neg"><div class="val">8</div><div class="lbl">Anuncios que aún comunican una oferta eliminada</div></div>
     <div class="kpi neu"><div class="val">0</div><div class="lbl">Anuncios con datos de una oferta modificada</div></div>
   </div>
 
@@ -247,15 +247,19 @@
         </div>
         <div class="cov-item">
           <div class="cov-check">✓</div>
-          <div><b>Grupos evergreen excluidos</b><span>Grupos cuyo nombre contiene "Competencia" o "GHL Plus" (ej. "URLS COMPETENCIA") quedan fuera del análisis — no dependen de una oferta puntual.</span></div>
+          <div><b>Todos los grupos revisados</b><span>Incluye los evergreen ("Competencia", "GHL Plus"): no son una oferta puntual, pero su contenido puede mencionar una oferta ya eliminada.</span></div>
         </div>
         <div class="cov-item">
           <div class="cov-check">✓</div>
-          <div><b>Contraste contra ofertas vigentes</b><span>Cada coincidencia se compara con las ofertas vigentes del mismo hotel. 1 coincidencia(s) descartadas porque solo compartían el % con una oferta vigente; las que comparten grupo con una vigente quedan como "Revisar".</span></div>
+          <div><b>Títulos genéricos por concepto</b><span>Ofertas sin palabras propias ("Fin de Semana", "Mínima Estadía 3 Noches", "Reserva Anticipada 30 Días") se detectan por concepto + número dentro de una misma frase del anuncio.</span></div>
+        </div>
+        <div class="cov-item">
+          <div class="cov-check">✓</div>
+          <div><b>Contraste contra ofertas vigentes</b><span>Cada coincidencia se compara con las ofertas vigentes del mismo hotel. 2 coincidencia(s) descartadas porque solo compartían el % con una oferta vigente; las que comparten grupo con una vigente quedan como "Revisar".</span></div>
         </div>
         <div class="cov-item">
           <div class="cov-check" style="background:var(--neu)">!</div>
-          <div><b>40 título(s) sin señal distintiva</b><span>Sin palabras propias (todo genérico) ni % en el título — no pueden generar alerta hoy: Arsenal: “Minima Estadía 3 Noches”; Bioxury: “Minima Estadía 3 Noches”; Armeria Real: “Tarifa Especial Para Días Festivos.”; GHL Collection Hamilton: ““Plan 4 Noches, Más Beneficios””; GHL Grand Villavicencio: “Reserva con Anticipación y Ahorra en Ghl Hotel Villavicencio”; GHL Relax Corales de Indias: “Oferta de Escapada Vacacional”; GHL Relax Sunrise: “Reserva con 90 Días de Anticipación y Ahorra”; GHL Style Bogota Occidente: “Reserva con Anticipación y Ahorra Más” (+32 más, ver log). Revisar manualmente o ampliar el algoritmo si corresponde.</span></div>
+          <div><b>2 título(s) sin señal distintiva</b><span>Sin palabras propias (todo genérico) ni % en el título — no pueden generar alerta hoy: GHL Relax Costa Azul: “Oferta Escapada”; GHL Grand Barranquilla: “Escapada”. Revisar manualmente o ampliar el algoritmo si corresponde.</span></div>
         </div>
       </div>
       <div class="cov-note">
@@ -268,10 +272,31 @@
   <section>
     <div class="section-head">
       <h2>Anuncios que comunican una oferta ya eliminada</h2>
-      <span class="count">5 hallazgo(s)</span>
+      <span class="count">8 hallazgo(s)</span>
     </div>
     <div class="search-wrap"><input type="text" class="search-input" placeholder="Buscar hotel o cuenta..." oninput="filtrarPorHotel(this)"></div>
     
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Corales de Indias COPS - ghlcoralesindias</div>
+          <div class="meta"><b>Corales de Indias - CO:es - PMax</b> · Performance Max · Grupo "GHL PLUS"</div>
+          <div class="meta">Hotel externo: <b>GHL Relax Corales de Indias</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Minima Estadía 3 Noches<span class="win">Minima Estadia</span></span>
+        
+        <span class="match-score">confianza: <b>Alta</b> · coincidencia de texto: 1.0 · 2026-08-12 08:38</span>
+      </div>
+      <div class="meta" style="margin-top:8px">Las palabras propias de la oferta eliminada aparecen en el anuncio y ninguna oferta vigente del hotel lo explica.</div>
+      <div class="meta" style="margin-top:6px"><b>Frases del anuncio que generan la alerta:</b></div>
+      <ul class="meta" style="margin:4px 0 0 18px"><li>Reserva mínimo 3 noches y vive descanso, mar y momentos únicos en Cartagena</li></ul>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">Hotel Corales de Indias | Corales de Indias Cartagena | GHL Corales de Indias | Habitaciones con Vista al Mar | Regístrate gratis a GHL Plus y recibe descuentos adicionales. Solo en la Web Oficial. | Disfruta de la terraza panorámica, piscinas, jacuzzi y bar frente al imponente mar caribe. | Todas nuestras habitaciones tienen una impresionante vista al mar. Reserva Ahora | Habitaciones con vista al mar. Amplias, iluminadas y confortables. | Despierta Frente al Mar Caribe | Balcón al Caribe en Cartagena | Reserva en nuestra Web Oficial | Vive Cartagena frente al mar | GHL Plus - Reserva Ahora | Reserva Ahora con GHL Plus | Sube de nivel con GHL Plus | Con GHL Plus Premiamos tu fidelidad en cada nivel | 20% Off Compra Anticipada | Ahorra 20% Reserva Anticipada | Reserva 3 Noches y Ahorra | Ahorra 20% reservando con anticipación y disfruta tu estadía frente al mar | Reserva mínimo 3 noches y vive descanso, mar y momentos únicos en Cartagena | Aprovecha 20% Off por Compra Anticipada y disfruta Cartagena frente al mar | Reserva 3 noches con 20% Off y vive una experiencia frente al mar en Cartagena | 20% Off + 3 Noches Caribe | Reserva ahora con 10% Off usando GHL Plus y mejora tu experiencia frente al mar</div>
+      </details>
+    </div>
     <div class="card estado-eliminada">
       <div class="card-top">
         <div class="card-id">
@@ -291,6 +316,27 @@
       <ul class="meta" style="margin:4px 0 0 18px"><li>12% Off Último <b>Minuto</b></li></ul>
       <details><summary>Ver texto completo del anuncio</summary>
         <div class="ad-text">{KeyWord:Hotel Portón Medellin®} | GHL Hotel Medellin | En Zona Estratégic Del Poblado | La Famosa Ruta Gastronómica | A 15 <b>Minuto</b>s del Olaya Herrera | Realiza por Aquí tu Reserva | Reserva Ahora Mismo | Reserva Anticipada 15% Off | GHL Hotel Portón Medellín | 12% de Dcto. Reservando Ahora | Descuentos Especiales | Hotel GHL Portón Medellin | Mínimo 4 noches y recibe 17% | Activa GHL Plus 10% menos | 12% Off Último <b>Minuto</b> | Ubicado en el Poblado. Ideal Para Viajeros que Visiten la Ciudad por Negocios o Placer | Recibe un almuerzo o cena ligera de cortesía. Solo reservando en la web oficial del hotel | Recibe Hasta un 10% Off registrándote gratis a GHL Plus. Solo en la Web Oficial. | Reserva tu viaje 30 días antes y obtén 15% Off para tu próxima estadía en Medellín.</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Portón Medellín COPS - ghlportonmedellin</div>
+          <div class="meta"><b>Portón Medellín - CO:es - PMAX Travel</b> · Performance Max · Grupo "URLS COMPETENCIA"</div>
+          <div class="meta">Hotel externo: <b>GHL Porton Medellin</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Escápate a Medellín de Último Minuto<span class="win">Ultimo Minuto</span></span>
+        
+        <span class="match-score">confianza: <b>Alta</b> · coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
+      </div>
+      <div class="meta" style="margin-top:8px">Las palabras propias de la oferta eliminada aparecen en el anuncio y ninguna oferta vigente del hotel lo explica.</div>
+      <div class="meta" style="margin-top:6px"><b>Frases del anuncio que generan la alerta:</b></div>
+      <ul class="meta" style="margin:4px 0 0 18px"><li>Reservando de último <b>minuto</b></li></ul>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">Hotel Portón Medellín | Hotel Portón Medellín | GHL Portón Medellín | Descuentos Únicos. Web Oficial | Reserva Ahora, Web Oficial | Ubicado en barrio El Poblado | Amplias y Cómodas Habitaciones | GHL Portón Medellín en Medellín, Web oficial | El Hotel Portón Medellín: la elección perfecta para tu próxima estadía en Medellín | Sorpréndete con la hospitalidad y el confort del Hotel Portón Medellín | Haz de tu viaje a Medellín algo inolvidable con el Hotel Portón Medellín | Descubre el lujo y la comodidad en el Hotel Portón Medellín | Vive una experiencia inolvidable en el Hotel Portón Medellín | Haz de tu estadía en Medellín algo especial con el Hotel Portón Medellín | El Hotel Portón Medellín: donde la elegancia y la comodidad se encuentran | Relájate y disfruta de la belleza de Medellín en el Hotel Portón Medellín | Recibe un almuerzo o cena ligera de cortesía. Solo reservando en la web oficial del hotel | Reserva Ya en GHL 10% Off | 10% Off reservando.Codigo GHL | Hasta 20% Off. Promocode GHL | Promocode GHL - Hasta 20% Off | GHL Plus 10% adicional | Registrate en GHL Plus -10% | Habitaciones modernas, restaurante, salones para eventos y parqueadero | Reservando de último <b>minuto</b></div>
       </details>
     </div>
     <div class="card estado-eliminada">
@@ -375,6 +421,27 @@
       <ul class="meta" style="margin:4px 0 0 18px"><li>Reservando de último <b>minuto</b></li></ul>
       <details><summary>Ver texto completo del anuncio</summary>
         <div class="ad-text">Hotel Portón Medellín | GHL Hotel Portón Medellín | GHL Portón Medellín | Reserva Ahora, Web Oficial | Ubicado en barrio El Poblado | Amplias y Cómodas Habitaciones | El Hotel Portón Medellín: la elección perfecta para tu próxima estadía en Medellín | Vive una experiencia inolvidable en el Hotel Portón Medellín | Haz de tu estadía en Medellín algo especial con el Hotel Portón Medellín | Recibe un almuerzo o cena ligera de cortesía. Solo reservando en la web oficial del hotel | Ideal para negocios y descanso | Descansa en zona exclusiva | Habitaciones modernas, restaurante, salones para eventos y parqueadero | Reserva tu estadía en GHL Hotel Portón Medellín, ubicado en El Poblado | Hospédate en El Poblado con desayuno incluido. | Desayuno Incluido | Reserva 30 Días Antes | Reserva con Anticipación | Obtén 15% Off reservando con 30 días de anticipación | 15% Off en Reserva Anticipada | 15% Off, desayuno incluido y ubicación privilegiada | 15% Off en Medellín | Anticípate 30 días y obtén una tarifa especial | Obtén 15% Off reservando con 30 días de anticipación. | Anticípate y Ahorra 15% | Tu Hotel en Medellín | Reserva anticipadamente y ahorra 15% en Medellín | Reservando de último <b>minuto</b></div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Sonesta Bucaramanga COPS  - ghlsonbucara</div>
+          <div class="meta"><b>Sonesta Hotel Bucaramanga - CO:es - BRND</b> · Search · Grupo "Adgroup Todas las Keywords"</div>
+          <div class="meta">Hotel externo: <b>Sonesta Bucaramanga</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Fin de Semana<span class="win">Fin de Semana</span></span>
+        
+        <span class="match-score">confianza: <b>Baja</b> · coincidencia de texto: 1.0 · 2026-10-01 09:10</span>
+      </div>
+      <div class="meta" style="margin-top:8px">Coincide solo por el % del nombre del grupo, sin palabras propias de la oferta: confirmar antes de actuar.</div>
+      <div class="meta" style="margin-top:6px"><b>Frases del anuncio que generan la alerta:</b></div>
+      <ul class="meta" style="margin:4px 0 0 18px"><li>Plan fin de <b>semana</b> ideal</li></ul>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">Hotel Sonesta Bucaramanga | Hotel Sonesta Bucaramanga® | Dctos Únicos en Nuestra Web | Compra de Manera Segura | Ubicado en Floridablanca | Ingresa a nuestra Web Oficial | Ingresa y Realiza tu Reserva | En el Sector de Cañaveral | Descuento por anticiparte | Plan fin de <b>semana</b> ideal | Reserva anticipada y ahorra | Viaja antes y paga menos | 10% de Dcto. Reservando Ahora | Sonesta, tu mejor elección | Recibe Hasta un 10% Off registrándote gratis a GHL Plus. Solo en la Web Oficial. | Espacios Ideales para Pasar una Estadía Inolvidable. ¡Reserva Ahora Mismo! | Reserva directamente y Paga en el Hotel. Obtén garantía de Calidad y Servicio. ¡Reserva! | Reserva con 30 días de anticipación y aprovecha una tarifa especial en Sonesta Bucaramanga</div>
       </details>
     </div>
     <div class="sin-resultados">Sin resultados para esa búsqueda.</div>
