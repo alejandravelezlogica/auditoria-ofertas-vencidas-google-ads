@@ -138,7 +138,7 @@
     <span>Canales: <b>Search · Display · Demand Gen · Performance Max</b></span>
   </div>
 </div>
-<div class="maintabs"><button class="maintab active" onclick="switchMain('tab-vencidas',this)">Fechas vencidas<span class="tag zero">0</span></button><button class="maintab" onclick="switchMain('tab-eliminadas',this)">Ofertas eliminadas / modificadas<span class="tag">7</span></button><button class="maintab" onclick="switchMain('tab-consumo',this)">Consumo e Inversión<span class="tag">1</span></button></div>
+<div class="maintabs"><button class="maintab active" onclick="switchMain('tab-vencidas',this)">Fechas vencidas<span class="tag zero">0</span></button><button class="maintab" onclick="switchMain('tab-eliminadas',this)">Ofertas eliminadas / modificadas<span class="tag">5</span></button><button class="maintab" onclick="switchMain('tab-consumo',this)">Consumo e Inversión<span class="tag">1</span></button></div>
 <div class="wrap">
 <div class="mainpanel active" id="tab-vencidas">
   <div class="kpis">
@@ -222,10 +222,10 @@
     Elaborado por: Agencia Digital · Dirección de Mercadeo · Oficina Central GHL · Octubre 2026
   </footer></div><div class="mainpanel" id="tab-eliminadas">
   <div class="kpis">
-    <div class="kpi"><div class="val">94</div><div class="lbl">Ofertas activas en el dashboard externo</div></div>
+    <div class="kpi"><div class="val">95</div><div class="lbl">Ofertas activas en el dashboard externo</div></div>
     <div class="kpi"><div class="val">53</div><div class="lbl">Ofertas marcadas como eliminadas</div></div>
-    <div class="kpi"><div class="val">0</div><div class="lbl">Ofertas marcadas como modificadas</div></div>
-    <div class="kpi neg"><div class="val">7</div><div class="lbl">Anuncios que aún comunican una oferta eliminada</div></div>
+    <div class="kpi"><div class="val">3</div><div class="lbl">Ofertas marcadas como modificadas</div></div>
+    <div class="kpi neg"><div class="val">5</div><div class="lbl">Anuncios que aún comunican una oferta eliminada</div></div>
     <div class="kpi neu"><div class="val">0</div><div class="lbl">Anuncios con datos de una oferta modificada</div></div>
   </div>
 
@@ -247,15 +247,19 @@
         </div>
         <div class="cov-item">
           <div class="cov-check">✓</div>
-          <div><b>Grupos evergreen excluidos</b><span>"Competencia" y "GHL Plus" quedan fuera del análisis en todas las cuentas — no dependen de una oferta puntual.</span></div>
+          <div><b>Grupos evergreen excluidos</b><span>Grupos cuyo nombre contiene "Competencia" o "GHL Plus" (ej. "URLS COMPETENCIA") quedan fuera del análisis — no dependen de una oferta puntual.</span></div>
+        </div>
+        <div class="cov-item">
+          <div class="cov-check">✓</div>
+          <div><b>Contraste contra ofertas vigentes</b><span>Cada coincidencia se compara con las ofertas vigentes del mismo hotel. 1 coincidencia(s) descartadas porque solo compartían el % con una oferta vigente; las que comparten grupo con una vigente quedan como "Revisar".</span></div>
         </div>
         <div class="cov-item">
           <div class="cov-check" style="background:var(--neu)">!</div>
-          <div><b>40 título(s) sin señal distintiva</b><span>Sin palabras propias (todo genérico) ni % en el título — no pueden generar alerta hoy: Arsenal: “Minima Estadía 3 Noches”; Bioxury: “Minima Estadía 3 Noches”; Armeria Real: “Tarifa Especial Para Días Festivos.”; GHL Collection Hamilton: “Promo Octubre”; GHL Collection Hamilton: ““Plan 4 Noches, Más Beneficios””; GHL Grand Villavicencio: “Reserva con Anticipación y Ahorra en Ghl Hotel Villavicencio”; GHL Relax Corales de Indias: “Oferta de Escapada Vacacional”; GHL Relax Sunrise: “Reserva con 90 Días de Anticipación y Ahorra” (+32 más, ver log). Revisar manualmente o ampliar el algoritmo si corresponde.</span></div>
+          <div><b>40 título(s) sin señal distintiva</b><span>Sin palabras propias (todo genérico) ni % en el título — no pueden generar alerta hoy: Arsenal: “Minima Estadía 3 Noches”; Bioxury: “Minima Estadía 3 Noches”; Armeria Real: “Tarifa Especial Para Días Festivos.”; GHL Collection Hamilton: ““Plan 4 Noches, Más Beneficios””; GHL Grand Villavicencio: “Reserva con Anticipación y Ahorra en Ghl Hotel Villavicencio”; GHL Relax Corales de Indias: “Oferta de Escapada Vacacional”; GHL Relax Sunrise: “Reserva con 90 Días de Anticipación y Ahorra”; GHL Style Bogota Occidente: “Reserva con Anticipación y Ahorra Más” (+32 más, ver log). Revisar manualmente o ampliar el algoritmo si corresponde.</span></div>
         </div>
       </div>
       <div class="cov-note">
-        229 anuncios/grupos de recursos activos cruzados contra 53 ofertas eliminadas y 0 modificadas del dashboard externo.
+        229 anuncios/grupos de recursos activos cruzados contra 53 ofertas eliminadas y 3 modificadas del dashboard externo.
         2 cuenta(s) de Google Ads no se pudieron vincular a ningún hotel del dashboard (quedaron fuera del cruce, no se asumió nada).
       </div>
     </div>
@@ -264,7 +268,7 @@
   <section>
     <div class="section-head">
       <h2>Anuncios que comunican una oferta ya eliminada</h2>
-      <span class="count">7 hallazgo(s)</span>
+      <span class="count">5 hallazgo(s)</span>
     </div>
     <div class="search-wrap"><input type="text" class="search-input" placeholder="Buscar hotel o cuenta..." oninput="filtrarPorHotel(this)"></div>
     
@@ -279,44 +283,14 @@
       </div>
       <div class="fechas">
         <span class="fecha-chip eliminada">Escápate a Medellín de Último Minuto<span class="win">Ultimo Minuto</span></span>
-        <span class="match-score">coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
+        
+        <span class="match-score">confianza: <b>Alta</b> · coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
       </div>
+      <div class="meta" style="margin-top:8px">Las palabras propias de la oferta eliminada aparecen en el anuncio y ninguna oferta vigente del hotel lo explica.</div>
+      <div class="meta" style="margin-top:6px"><b>Frases del anuncio que generan la alerta:</b></div>
+      <ul class="meta" style="margin:4px 0 0 18px"><li>12% Off Último <b>Minuto</b></li></ul>
       <details><summary>Ver texto completo del anuncio</summary>
         <div class="ad-text">{KeyWord:Hotel Portón Medellin®} | GHL Hotel Medellin | En Zona Estratégic Del Poblado | La Famosa Ruta Gastronómica | A 15 <b>Minuto</b>s del Olaya Herrera | Realiza por Aquí tu Reserva | Reserva Ahora Mismo | Reserva Anticipada 15% Off | GHL Hotel Portón Medellín | 12% de Dcto. Reservando Ahora | Descuentos Especiales | Hotel GHL Portón Medellin | Mínimo 4 noches y recibe 17% | Activa GHL Plus 10% menos | 12% Off Último <b>Minuto</b> | Ubicado en el Poblado. Ideal Para Viajeros que Visiten la Ciudad por Negocios o Placer | Recibe un almuerzo o cena ligera de cortesía. Solo reservando en la web oficial del hotel | Recibe Hasta un 10% Off registrándote gratis a GHL Plus. Solo en la Web Oficial. | Reserva tu viaje 30 días antes y obtén 15% Off para tu próxima estadía en Medellín.</div>
-      </details>
-    </div>
-    <div class="card estado-eliminada">
-      <div class="card-top">
-        <div class="card-id">
-          <div class="cuenta">GHL Portón Medellín COPS - ghlportonmedellin</div>
-          <div class="meta"><b>Portón Medellín - CO:es - PMAX Travel</b> · Performance Max · Grupo "URLS COMPETENCIA"</div>
-          <div class="meta">Hotel externo: <b>GHL Porton Medellin</b> · match exacta (alias de cuenta) (1.0)</div>
-        </div>
-        <span class="badge eliminada">Eliminada de la web</span>
-      </div>
-      <div class="fechas">
-        <span class="fecha-chip eliminada">Escápate a Medellín de Último Minuto<span class="win">Ultimo Minuto</span></span>
-        <span class="match-score">coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
-      </div>
-      <details><summary>Ver texto completo del anuncio</summary>
-        <div class="ad-text">Hotel Portón Medellín | Hotel Portón Medellín | GHL Portón Medellín | Descuentos Únicos. Web Oficial | Reserva Ahora, Web Oficial | Ubicado en barrio El Poblado | Amplias y Cómodas Habitaciones | GHL Portón Medellín en Medellín, Web oficial | El Hotel Portón Medellín: la elección perfecta para tu próxima estadía en Medellín | Sorpréndete con la hospitalidad y el confort del Hotel Portón Medellín | Haz de tu viaje a Medellín algo inolvidable con el Hotel Portón Medellín | Descubre el lujo y la comodidad en el Hotel Portón Medellín | Vive una experiencia inolvidable en el Hotel Portón Medellín | Haz de tu estadía en Medellín algo especial con el Hotel Portón Medellín | El Hotel Portón Medellín: donde la elegancia y la comodidad se encuentran | Relájate y disfruta de la belleza de Medellín en el Hotel Portón Medellín | Recibe un almuerzo o cena ligera de cortesía. Solo reservando en la web oficial del hotel | Reserva Ya en GHL 10% Off | 10% Off reservando.Codigo GHL | Hasta 20% Off. Promocode GHL | Promocode GHL - Hasta 20% Off | GHL Plus 10% adicional | Registrate en GHL Plus -10% | Habitaciones modernas, restaurante, salones para eventos y parqueadero | Reservando de último <b>minuto</b></div>
-      </details>
-    </div>
-    <div class="card estado-eliminada">
-      <div class="card-top">
-        <div class="card-id">
-          <div class="cuenta">GHL Portón Medellín COPS - ghlportonmedellin</div>
-          <div class="meta"><b>Portón Medellín - CO:es - PMAX Travel</b> · Performance Max · Grupo "Reserva Anticipada 15%"</div>
-          <div class="meta">Hotel externo: <b>GHL Porton Medellin</b> · match exacta (alias de cuenta) (1.0)</div>
-        </div>
-        <span class="badge eliminada">Eliminada de la web</span>
-      </div>
-      <div class="fechas">
-        <span class="fecha-chip eliminada">Escápate a Medellín de Último Minuto<span class="win">Ultimo Minuto</span></span>
-        <span class="match-score">coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
-      </div>
-      <details><summary>Ver texto completo del anuncio</summary>
-        <div class="ad-text">Hotel Portón Medellín | GHL Hotel Portón Medellín | GHL Portón Medellín | Reserva Ahora, Web Oficial | Ubicado en barrio El Poblado | Amplias y Cómodas Habitaciones | El Hotel Portón Medellín: la elección perfecta para tu próxima estadía en Medellín | Vive una experiencia inolvidable en el Hotel Portón Medellín | Haz de tu estadía en Medellín algo especial con el Hotel Portón Medellín | Recibe un almuerzo o cena ligera de cortesía. Solo reservando en la web oficial del hotel | Ideal para negocios y descanso | Descansa en zona exclusiva | Habitaciones modernas, restaurante, salones para eventos y parqueadero | Reserva tu estadía en GHL Hotel Portón Medellín, ubicado en El Poblado | Hospédate en El Poblado con desayuno incluido. | Desayuno Incluido | Reserva 30 Días Antes | Reserva con Anticipación | Obtén 15% Off reservando con 30 días de anticipación | 15% Off en Reserva Anticipada | 15% Off, desayuno incluido y ubicación privilegiada | 15% Off en Medellín | Anticípate 30 días y obtén una tarifa especial | Obtén 15% Off reservando con 30 días de anticipación. | Anticípate y Ahorra 15% | Tu Hotel en Medellín | Reserva anticipadamente y ahorra 15% en Medellín | Reservando de último <b>minuto</b></div>
       </details>
     </div>
     <div class="card estado-eliminada">
@@ -330,27 +304,14 @@
       </div>
       <div class="fechas">
         <span class="fecha-chip eliminada">Escápate a Medellín de Último Minuto<span class="win">Ultimo Minuto</span></span>
-        <span class="match-score">coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
+        
+        <span class="match-score">confianza: <b>Alta</b> · coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
       </div>
+      <div class="meta" style="margin-top:8px">Las palabras propias de la oferta eliminada aparecen en el anuncio y ninguna oferta vigente del hotel lo explica.</div>
+      <div class="meta" style="margin-top:6px"><b>Frases del anuncio que generan la alerta:</b></div>
+      <ul class="meta" style="margin:4px 0 0 18px"><li>12% Off Último <b>Minuto</b></li><li>Oferta de último <b>minuto</b> para tu próxima estadía en Medellín</li></ul>
       <details><summary>Ver texto completo del anuncio</summary>
         <div class="ad-text">Hotel Portón Medellín | Hotel Portón Medellín | GHL Portón Medellín | Ubicado en barrio El Poblado | Haz de tu viaje a Medellín algo inolvidable con el Hotel Portón Medellín | Vive una experiencia inolvidable en el Hotel Portón Medellín | El Hotel Portón Medellín: donde la elegancia y la comodidad se encuentran | Recibe un almuerzo o cena ligera de cortesía. Solo reservando en la web oficial del hotel | Habitaciones modernas, restaurante, salones para eventos y parqueadero | Desayuno Incluido | Ideal para Negocios y Descanso | Experiencia GHL Medellín | Reserva y Disfruta de Ofertas | Hotel en El Poblado | 12% Off para disfrutar Medellín desde el Poblado, una ubicación privilegiada | 12% Off Último <b>Minuto</b> | Viaja a Medellín Hoy | Oferta de último <b>minuto</b> para tu próxima estadía en Medellín | Reserva y Ahorra Hoy | Reserva hoy y hospédate en el corazón de El Poblado. | Aprovecha 12% Off y disfruta hoy una escapada en Medellín. | Aprovecha 12% Off | Reserva hoy y aprovecha una tarifa especial del 12% Off en Medellín | Escápate a Medellín y aprovecha 12% Off en tu reserva</div>
-      </details>
-    </div>
-    <div class="card estado-eliminada">
-      <div class="card-top">
-        <div class="card-id">
-          <div class="cuenta">GHL Sonesta Cartagena COPS - ghlsoncartagena</div>
-          <div class="meta"><b>GHL Sonesta Cartagena - CO:es - PMAX Travel</b> · Performance Max · Grupo "Sonesta Cartagena 10% anticipación"</div>
-          <div class="meta">Hotel externo: <b>Sonesta Cartagena</b> · match exacta (alias de cuenta) (1.0)</div>
-        </div>
-        <span class="badge eliminada">Eliminada de la web</span>
-      </div>
-      <div class="fechas">
-        <span class="fecha-chip eliminada">Momentos Sonesta – 10% de Descuento en Tu Próxima Escapada<span class="win">Descuento Directo</span></span>
-        <span class="match-score">coincidencia de texto: 1.0 · 2026-08-12 08:38</span>
-      </div>
-      <details><summary>Ver texto completo del anuncio</summary>
-        <div class="ad-text">Exclusiva Zona Residencial | Ingresa a nuestra Web Oficial | Reserva en la Web Oficial | Ingresa y Realiza tu Reserva | Reserva Ahora | Descuentos Únicos. Web Oficial | Sonesta Hotel Cartagena | Sonesta Hotel Cartagena | Todas nuestras tarifas incluyen Desayuno Buffet en el Restaurante Palenke | Reserva Anticipada, más Ahorro | Guest Service 24 horas, espectacular centro de negocios, restaurante y servicio completo | Planea Tu Viaje con Sonesta | Reserva antes y disfruta playa, desayuno y beneficios exclusivos | Planea Hoy y Ahorra 10% | Reserva 30 días antes y obtén 10% Off en Sonesta Cartagena. | Vive Cartagena con más beneficios reservando con anticipación | 10% Off en Cartagena | Disfruta desayuno buffet, playa y WiFi incluidos. | Planea tu escapada al Caribe y ahorra 10% en Sonesta Cartagena | Tu próxima escapada al mar comienza con 10% Off | Planea hoy tu viaje al Caribe y aprovecha esta tarifa especial. | Reserva Anticipada 10% Off | Reserva Anticipado y Ahorra | Reserva con 30 días de anticipación y disfruta 10% Off en Cartagena</div>
       </details>
     </div>
     <div class="card estado-eliminada">
@@ -364,8 +325,12 @@
       </div>
       <div class="fechas">
         <span class="fecha-chip eliminada">Compra Anticipada 60 Días<span class="win">Compra Anticipada</span></span>
-        <span class="match-score">coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
+        
+        <span class="match-score">confianza: <b>Alta</b> · coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
       </div>
+      <div class="meta" style="margin-top:8px">Las palabras propias de la oferta eliminada aparecen en el anuncio y ninguna oferta vigente del hotel lo explica.</div>
+      <div class="meta" style="margin-top:6px"><b>Frases del anuncio que generan la alerta:</b></div>
+      <ul class="meta" style="margin:4px 0 0 18px"><li>Ahorra en <b>compra</b> <b>anticipada</b></li><li>Reserva con 30 o 60 días y ahorra en Sonesta Pereira. Planifica, paga menos y descansa</li></ul>
       <details><summary>Ver texto completo del anuncio</summary>
         <div class="ad-text">Hotel Sonesta Pereira | Sonesta Pereira | Sonesta Pereira® | Ingresa a nuestra Web Oficial | Descanso en Pereira con ahorro | Hotel de Lujo en Pereira | Reserva al Mejor Precio Online | Reserva Pereira con descuento | Planifica y paga menos hoy | A 5 Minutos del Aeropuerto | Zona Campestre Turística | Sonesta Hotel Pereira | Ahorra en <b>compra</b> <b>anticipada</b> | Inscríbete a GHL Plus -10% | Recibe Hasta un 10% Off registrándote gratis a GHL Plus. Solo en la Web Oficial. | Obtén diferentes servicios como: canchas de tenis, piscina exterior climatizada y más | Disfrute de la vista del hermoso paisaje cafetero, no lo dudes. ¡Ingresa y Reserva Ahora! | Reserva con 30 o 60 días y ahorra en Sonesta Pereira. Planifica, paga menos y descansa</div>
       </details>
@@ -381,10 +346,35 @@
       </div>
       <div class="fechas">
         <span class="fecha-chip eliminada">Compra Anticipada 60 Días<span class="win">Compra Anticipada</span></span>
-        <span class="match-score">coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
+        
+        <span class="match-score">confianza: <b>Alta</b> · coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
       </div>
+      <div class="meta" style="margin-top:8px">Las palabras propias de la oferta eliminada aparecen en el anuncio y ninguna oferta vigente del hotel lo explica.</div>
+      <div class="meta" style="margin-top:6px"><b>Frases del anuncio que generan la alerta:</b></div>
+      <ul class="meta" style="margin:4px 0 0 18px"><li>14% Off <b>Compra</b> <b>Anticipada</b></li><li>Mejor Tarifa <b>Anticipada</b></li><li>Reserva 60 Días Antes</li><li>Obtén 14% De Descuento Reservando Con 60 Días De Anticipación</li><li>Reserva con 60 días de anticipación y obtén 14% de descuento.</li></ul>
       <details><summary>Ver texto completo del anuncio</summary>
         <div class="ad-text">Ingresa a nuestra Web Oficial | Hotel de Lujo en Pereira | Reserva al Mejor Precio Online | Disfrute de la vista del hermoso paisaje cafetero, no lo dudes. ¡Ingresa y Reserva Ahora! | Hotel Sonesta Pereira | Zona Campestre Turística | A 5 Minutos del Aeropuerto | Disfruta el Paisaje Cafetero | Las habitaciones estan decoradas con buen gusto, combinando modernidad y comodidad. | En medio del imponente Paisaje Cultural Cafetero y a pocos minutos de la ciudad. | Para los viajeros de negocios, como a los que acuden a nuestro hotel, para descansar | Reserva hoy, paga menos | Obtén 10% con GHL Plus y vive Sonesta Pereira al mejor precio | Ahorra 10% con GHL Plus en Sonesta Pereira. Tu descanso empieza aquí | Reserva Pereira con descuento | 14% Off <b>Compra</b> <b>Anticipada</b> | Mejor Tarifa <b>Anticipada</b> | Reserva 60 Días Antes | Obtén 14% De Descuento Reservando Con 60 Días De Anticipación | Ahorra 14% Reservando Ya | Planifica y Ahorra 14% | Ahorra 14% reservando con anticipación en la web oficial. | Anticipa tu Viaje y Ahorra | Reserva con 60 días de anticipación y obtén 14% de descuento. | Planifica Tu Viaje Al Eje Cafetero Y Ahorra 14% En Tu Reserva</div>
+      </details>
+    </div>
+    <div class="card estado-eliminada">
+      <div class="card-top">
+        <div class="card-id">
+          <div class="cuenta">GHL Portón Medellín COPS - ghlportonmedellin</div>
+          <div class="meta"><b>Portón Medellín - CO:es - PMAX Travel</b> · Performance Max · Grupo "Reserva Anticipada 15%"</div>
+          <div class="meta">Hotel externo: <b>GHL Porton Medellin</b> · match exacta (alias de cuenta) (1.0)</div>
+        </div>
+        <span class="badge eliminada">Eliminada de la web</span>
+      </div>
+      <div class="fechas">
+        <span class="fecha-chip eliminada">Escápate a Medellín de Último Minuto<span class="win">Ultimo Minuto</span></span>
+        <span class="fecha-chip vigente">Anticípate 30 Días Obtén un 15% Off<span class="win">Vigente en la web</span></span>
+        <span class="match-score">confianza: <b>Revisar</b> · coincidencia de texto: 1.0 · 2026-10-13 22:05</span>
+      </div>
+      <div class="meta" style="margin-top:8px">El grupo también comunica una oferta VIGENTE: probablemente solo hay que retirar las frases de abajo, no pausar el grupo.</div>
+      <div class="meta" style="margin-top:6px"><b>Frases del anuncio que generan la alerta:</b></div>
+      <ul class="meta" style="margin:4px 0 0 18px"><li>Reservando de último <b>minuto</b></li></ul>
+      <details><summary>Ver texto completo del anuncio</summary>
+        <div class="ad-text">Hotel Portón Medellín | GHL Hotel Portón Medellín | GHL Portón Medellín | Reserva Ahora, Web Oficial | Ubicado en barrio El Poblado | Amplias y Cómodas Habitaciones | El Hotel Portón Medellín: la elección perfecta para tu próxima estadía en Medellín | Vive una experiencia inolvidable en el Hotel Portón Medellín | Haz de tu estadía en Medellín algo especial con el Hotel Portón Medellín | Recibe un almuerzo o cena ligera de cortesía. Solo reservando en la web oficial del hotel | Ideal para negocios y descanso | Descansa en zona exclusiva | Habitaciones modernas, restaurante, salones para eventos y parqueadero | Reserva tu estadía en GHL Hotel Portón Medellín, ubicado en El Poblado | Hospédate en El Poblado con desayuno incluido. | Desayuno Incluido | Reserva 30 Días Antes | Reserva con Anticipación | Obtén 15% Off reservando con 30 días de anticipación | 15% Off en Reserva Anticipada | 15% Off, desayuno incluido y ubicación privilegiada | 15% Off en Medellín | Anticípate 30 días y obtén una tarifa especial | Obtén 15% Off reservando con 30 días de anticipación. | Anticípate y Ahorra 15% | Tu Hotel en Medellín | Reserva anticipadamente y ahorra 15% en Medellín | Reservando de último <b>minuto</b></div>
       </details>
     </div>
     <div class="sin-resultados">Sin resultados para esa búsqueda.</div>
